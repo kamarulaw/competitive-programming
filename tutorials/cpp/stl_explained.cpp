@@ -288,7 +288,8 @@ void explainMap()
 }
 
 // Priority Queue
-void explainPriorityQueue() {
+void explainPriorityQueue() 
+{
   //stores greatest element at top 
   priority_queue<int> pq; 
   pq.push(5);
