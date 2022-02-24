@@ -8,8 +8,8 @@ public:
       
       for (int x: nums) 
         pq.push(x);
+     
       int kc = k;
-      
       while (kc != 0) { 
         m[pq.top()]++;
         pq.pop(); 
