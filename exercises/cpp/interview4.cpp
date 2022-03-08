@@ -60,7 +60,7 @@ class WaitList{
     return; 
   }
 
-  //JR
+  // Interviewer ~ JR
   
 };
 
