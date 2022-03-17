@@ -8,7 +8,11 @@ struct Treenode {
   int data; 
   Treenode *left; 
   Treenode *rght; 
-  Treenode(int data): data(data), left(nullptr), rght(nullptr) {} // Constructur
+  Treenode(int val){ 
+      data = val; 
+      left = nullptr; 
+      rght = nullptr; 
+  }
 };
 
 
@@ -19,6 +23,23 @@ void levelordertrav(Treenode* root, int depth) {
     levelordertrav(root->left, depth+1);
     levelordertrav(root->rght, depth+1);
   }
+}
+
+Treenode* LCA(Treenode* root, int v1, int v2) {
+  if (root == NULL) 
+    return NULL; 
+  if (root->data == v1 || root->data == v2) 
+    return root; 
+    
+  Treenode* lca_l = LCA(root->left, v1, v2);
+  Treenode* lca_r = LCA(root->rght, v1, v2);
+  
+  if (lca_l!=NULL && lca_r!=NULL)  
+    return root; 
+
+  if (lca_l != NULL)
+    return lca_l; 
+  return lca_r; 
 }
 
 int main() {
@@ -49,9 +70,11 @@ int main() {
     for (int j = 0; j < lvl.size(); j++)
       cout << lvl[j] << " ";
     cout << endl; 
-  
   }
+  
+  // Lowest Common Ancestor
+  cout<<"LCA of 5 and 13 is "<<LCA(&root,5,13)->data<<endl;
+  cout<<"LCA of 5 and 12 is "<<LCA(&root,5,12)->data<<endl;
+  cout<<"LCA of 7 and 13 is "<<LCA(&root,7,13)->data<<endl;
+  return 0; 
 }
-
-
-
