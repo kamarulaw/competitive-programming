@@ -17,6 +17,8 @@ int peak_sol1(vector<int> arr) {
 }
 
 // Solution 2: O(log n)
+
+/*
 int binsearch(vector<int> A, int lo, int hi, int elem) { 
   while (lo < hi) { 
     int mid = lo + (hi-lo)/2; 
@@ -29,7 +31,7 @@ int binsearch(vector<int> A, int lo, int hi, int elem) {
     }
   }
   return -1; // if element is not found
-}
+}*/
 
 int peak_sol2(vector<int> A) {
   int mid = lo + (hi-lo) / 2; 
