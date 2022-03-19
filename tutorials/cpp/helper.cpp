@@ -45,6 +45,17 @@ int bs(vector<int> A, int e, int lo, int hi) {
   return -1; 
 }
 
+vector<vector<int>> subsets; 
+void generateSubsets(vector<int> arr, int i, vector<int> subset, int n) {
+  if (i == n) { 
+    subsets.push_back(subset);
+    return; 
+  }
+  generateSubsets(arr, i+1, subset, n); // proceed without i-th element
+  subset.push_back(arr[i]);
+  generateSubsets(arr, i+1, subset, n); // proceed with i-th element
+}
+
 int main() {
   /* Binary Search */ 
   vector <int> arr; 
@@ -103,6 +114,25 @@ int main() {
   Ade.max_num_outdoor_hobbies = 1; 
   Ade.max_num_rec_substances = 2;
   Ade.has_children = false; 
+  
+  /* Combinations */ 
+ 
+  // Test Case
+  vector<int> arr = {1,2,3,4};
+  vector<int> subset; 
+  int n = arr.size(); 
+  
+  // Generate Subsets
+  generateSubsets(arr, 0, subset, n);
+  
+  // Print Subsets
+  for (int i = 0; i < subsets.size(); i++) { 
+    vector<int> csubset = subsets[i];
+    for (int j = 0; j < csubset.size(); j++) { 
+      cout << csubset[j] << " ";   
+    }
+    cout << endl; 
+  }
 }
 
 
