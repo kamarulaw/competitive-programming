@@ -45,6 +45,19 @@ int bs(vector<int> A, int e, int lo, int hi) {
   return -1; 
 }
 
+vector<vector<int>> perms;
+void permutations(vector<int> arr, int i, int n) { 
+  if (i == n-1) {
+    perms.push_back(arr);
+  }
+  
+  for (int j = i; j < n; j++) {
+    swap(arr[i], arr[j]); 
+    permutations(arr,i+1,n);
+    swap(arr[i],arr[j]); // change arr state back to original
+  }
+}
+
 vector<vector<int>> subsets; 
 void generateSubsets(vector<int> arr, int i, vector<int> subset, int n) {
   if (i == n) { 
@@ -133,7 +146,22 @@ int main() {
     }
     cout << endl; 
   }
+  
+  /* Permutations */ 
+  
+  // Test Case 
+  vector<int> test = {1,2,3};
+  int vec_size = test.size(); 
+  
+  // Generate Permutations
+  permutations(test,0,vec_size);
+  
+  // Print Permutations
+  for (int i = 0; i < perms.size(); i++) { 
+    vector<int> curr_perm = perms[i];
+    for (int j = 0; j < curr_perm.size(); j++) { 
+      cout << curr_perm[j] << " "; 
+    }
+    cout << endl; 
+  }
 }
-
-
-
