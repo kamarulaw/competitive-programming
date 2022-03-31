@@ -30,6 +30,9 @@ struct Human {
   bool has_children;
 };
 
+bool cmp_pq(vector<int> a, vector<int> b) { 
+  return a[1] <= b[1];
+}
 
 int bs(vector<int> A, int e, int lo, int hi) {
   while (lo < hi) {
@@ -129,7 +132,6 @@ int main() {
   Ade.has_children = false; 
   
   /* Combinations */ 
- 
   // Test Case
   vector<int> arr = {1,2,3,4};
   vector<int> subset; 
@@ -148,7 +150,6 @@ int main() {
   }
   
   /* Permutations */ 
-  
   // Test Case 
   vector<int> test = {1,2,3};
   int vec_size = test.size(); 
@@ -163,5 +164,24 @@ int main() {
       cout << curr_perm[j] << " "; 
     }
     cout << endl; 
+  }
+  
+  /* Priority Queue with Custom Comparator*/
+  priority_queue<vector<int>, vector<vector<int>>, bool(*)(vector<int>, vector<int>)> pq(cmp_pq);
+  vector<int> v1 = {3,0,4,5,6,7};
+  vector<int> v2 = {4,1,5,6,7,8};
+  vector<int> v3 = {5,2,6,7,8,9};
+  
+  pq.push(v1);
+  pq.push(v2);
+  pq.push(v3);
+  
+  while (!pq.empty()) { 
+    vector<int> curr = pq.top();
+    for (int i = 0; i < curr.size(); i++) {
+      cout << curr[i] << " "; 
+    }
+    cout << endl;
+    pq.pop();
   }
 }
