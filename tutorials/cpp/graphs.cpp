@@ -57,7 +57,7 @@ void bfs(vector<vector<int>> graph, int start) {
 }
   
 // UTIL 
-vector<vector<int>> createGraph(int n) { 
+vector<vector<int>> init(int n) { 
   vector<int> evec; 
   vector<vector<int>> graph; 
   for (int i = 0; i <= n; i++) 
@@ -65,30 +65,34 @@ vector<vector<int>> createGraph(int n) {
   return graph; 
 }
 
-vector<vector<int>> addEdge(vector<vector<int>>g,int s,int d) { 
+vector<vector<int>> addUedge(vector<vector<int>>g, int s, int d) { 
   g[s].push_back(d);
   g[d].push_back(s);
   return g; 
 }
 
-int main() 
-{
-  // Create Graph
-  vector<vector<int>> g1 = createGraph(15);
-  g1 = addEdge(g1,1,2);
-  g1 = addEdge(g1,1,3);
-  g1 = addEdge(g1,2,4);
-  g1 = addEdge(g1,2,5);
-  g1 = addEdge(g1,3,6);
-  g1 = addEdge(g1,3,7);
-  g1 = addEdge(g1,4,8);
-  g1 = addEdge(g1,4,9);
-  g1 = addEdge(g1,5,10);
-  g1 = addEdge(g1,5,11);
-  g1 = addEdge(g1,6,12);
-  g1 = addEdge(g1,6,13);
-  g1 = addEdge(g1,7,14);
-  g1 = addEdge(g1,7,15);
+vector<vector<int>> addDedge(vector<vector<int>>g, int s, int d) { 
+  g[s].push_back(d);
+  return g; 
+}
+
+int main() {
+  // Create Undirected Graph
+  vector<vector<int>> g1 = init(15);
+  g1 = addUedge(g1,1,2);
+  g1 = addUedge(g1,1,3);
+  g1 = addUedge(g1,2,4);
+  g1 = addUedge(g1,2,5);
+  g1 = addUedge(g1,3,6);
+  g1 = addUedge(g1,3,7);
+  g1 = addUedge(g1,4,8);
+  g1 = addUedge(g1,4,9);
+  g1 = addUedge(g1,5,10);
+  g1 = addUedge(g1,5,11);
+  g1 = addUedge(g1,6,12);
+  g1 = addUedge(g1,6,13);
+  g1 = addUedge(g1,7,14);
+  g1 = addUedge(g1,7,15);
   
   // Test
   bfs(g1,1);
