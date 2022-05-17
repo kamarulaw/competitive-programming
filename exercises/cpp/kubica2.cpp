@@ -3,7 +3,8 @@
 
 using namespace std;
 
-vector<string> strings; 
+vector<string> gs1; 
+vector<string> gs2; 
 
 bool isBalanced(string st) {
   int counter = 0; 
@@ -30,7 +31,7 @@ bool isBalanced(string st) {
 void generateStrings(string s, int i, int n) { 
   if (i == n) { 
     if (isBalanced(s)) {
-      strings.push_back(s);
+      gs1.push_back(s);
     }
     return; 
   }
@@ -41,7 +42,7 @@ void generateStrings(string s, int i, int n) {
 void generateStrings2(string s, int i, int n, int counter) { 
   if (i == n) { 
     if (counter == 0) {
-      strings.push_back(s);
+      gs2.push_back(s);
     }
     return; 
   }
@@ -52,12 +53,6 @@ void generateStrings2(string s, int i, int n, int counter) {
 }
 
 int main() {
-  generateStrings("", 0, 4);
-  generateStrings2("", 0, 8, 0);
-  for (int i = 0; i < strings.size(); i++) { 
-    cout << strings[i] << endl; 
-  }
-  
   /* 
   // Test Code for isBalanced
   
@@ -75,4 +70,6 @@ int main() {
   cout << "()(()()): " << isBalanced(eg5) << endl;
   cout << ": " << isBalanced(eg6) << endl; 
   */
+  generateStrings("", 0, 4);
+  generateStrings2("", 0, 8, 0);  
 }
