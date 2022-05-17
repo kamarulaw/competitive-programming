@@ -7,8 +7,8 @@ vector<string> gs1;
 vector<string> gs2; 
 
 bool isBalanced(string st) {
-  int counter = 0; 
   // Post Condition: counter = 0
+  int counter = 0; 
   for (int i = 0; i < st.length(); i++) { 
     
     if (st[i] == '(') {
