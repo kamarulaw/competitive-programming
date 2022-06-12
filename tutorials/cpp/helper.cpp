@@ -21,7 +21,7 @@ struct xyz {
   }
 };
 
-struct Human { 
+struct Borg { 
   char init_; // her first initial
   int max_num_children; // maxiumum number of children Human is interested in having during lifetime
   int max_num_indoor_hobbies; // maximum number of indoor hobbies Human is allowed to have
@@ -123,7 +123,7 @@ int main() {
     cout << "Distance From Origin: " << pts[i].dfo() << endl; 
 
   // Example 3
-  Human Ade; 
+  Borg Ade; 
   Ade.init_ = '*'; 
   Ade.max_num_children = 2;
   Ade.max_num_indoor_hobbies = 6; 
