@@ -1,4 +1,4 @@
-SOLUTION1: VECTOR+MAP
+/*SOLUTION1: VECTOR+MAP*/
 /*TIME LIMIT EXCEEDED on CASE 47 of 48 */
 class Solution {
 public:
@@ -37,7 +37,8 @@ public:
     }
 };
 
-SOLUTION2: VECTOR+STACK
+/*SOLUTION2: VECTOR+STACK*/
+/*All tests passed*/
 class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
