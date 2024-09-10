@@ -1,5 +1,5 @@
+SOLUTION1: VECTOR+MAP
 /*TIME LIMIT EXCEEDED on CASE 47 of 48 */
-
 class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
@@ -36,3 +36,33 @@ public:
         return result;
     }
 };
+
+SOLUTION2: VECTOR+STACK
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& temperatures) {
+        stack<int> st; 
+        
+        vector<int> result; 
+        for (int i = 0; i < temperatures.size(); i++)
+        {
+            result.push_back(0);
+        }
+
+        for (int i = temperatures.size()-1; i >= 0; i--)
+        {
+            while (st.size() > 0 && temperatures[i] >= temperatures[st.top()])
+            {
+                st.pop();
+            }
+
+            if (st.size() > 0)
+            {
+                result[i] = st.top() - i;
+            }
+
+            st.push(i);
+        }
+        return result;
+    }
+};    
