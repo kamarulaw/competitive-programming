@@ -1,14 +1,5 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
+/* SOLUTION 1 */ 
+/* All tests passed */
 class Solution {
 public:  
     int pathSum(TreeNode* root, int targetSum) {
@@ -27,5 +18,37 @@ public:
         res = 1; 
       return res + pathHelper(root->left, sum - root->val) + pathHelper(root->right, sum - root->val);
       
+    }
+};
+
+/* SOLUTION 2 */ 
+/* WRONG ANSWER ON CASE 100 of 129*/
+class Solution {
+public:
+    int numpaths = 0;
+    
+    int pathSum(TreeNode* root, int targetSum) 
+    {
+        dfs(root, targetSum, 0); 
+        return numpaths;    
+    }
+
+    void dfs(TreeNode* n, int targetSum, int pathSum)
+    {
+        if (n == NULL)
+        {
+            return;
+        }
+
+        if (pathSum + n->val == targetSum)
+        {
+            numpaths++;
+        }
+
+        dfs(n->left, targetSum, 0);
+        dfs(n->left, targetSum, pathSum + n->val);
+
+        dfs(n->right, targetSum, 0);
+        dfs(n->right, targetSum, pathSum + n->val);
     }
 };
