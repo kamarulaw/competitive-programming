@@ -1,11 +1,11 @@
 /* SOLUTION 1 */ 
-/* WRONG ANSWER ON CASE 49 of 63 */
+/* All tests passed */
 class Solution {
 public:
     int goodnodes = 0; 
     int goodNodes(TreeNode* root) 
     {
-        dfs(root, -1);    
+        dfs(root, -1*pow(10,5));    
         return goodnodes;
     }
 
