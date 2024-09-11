@@ -1,5 +1,7 @@
-/* this solutions seems right to me. might look into this later */
-
+/* SOLUTION 1 */
+/* Tests failed */
+/* seems right to me. might look into this later */
+/* uses 1 stack */
 class Solution {
 public:
     string decodeString(string s) {
@@ -49,5 +51,61 @@ public:
             s[s.length()-1-i] = temp;
         }
         return res;
+    }
+};
+
+/* SOLUTION 2 */
+/* All tests passed */
+/* uses multiple stacks */
+class Solution {
+public:
+    string decodeString(string s) {
+        stack<int> nums;
+        stack<string> chars;
+        
+        int num = 0;
+        string res = ""; 
+
+        for (char c:s)
+        {
+            if (isdigit(c))
+            {
+                num = 10*num + (c-'0');
+            }
+            else if (isalpha(c))
+            {
+                res += c;
+            }
+            else if (islb(c))
+            {
+                nums.push(num);
+                chars.push(res); 
+                res = "";
+                num = 0;
+            }
+            else if (isrb(c))
+            {
+                string temp = res;
+                for (int i = 0; i < nums.top()-1; i++)
+                {
+                    res += temp;
+                }
+
+                res = chars.top() + res;
+                nums.pop();
+                chars.pop();
+            }
+        } 
+        return res;
+    }
+    
+    bool islb(char c)
+    {
+        return c=='[';
+    }
+
+    bool isrb(char c)
+    {
+        return c==']';
     }
 };
