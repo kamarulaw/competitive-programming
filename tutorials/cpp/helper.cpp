@@ -30,10 +30,6 @@ struct Borg {
   bool has_children;
 };
 
-bool cmp_pq(vector<int> a, vector<int> b) { 
-  return a[1] <= b[1];
-}
-
 int bs(vector<int> A, int e, int lo, int hi) {
   while (lo < hi) {
     int mid = lo + (hi - lo) / 2; 
@@ -167,6 +163,11 @@ int main() {
   }
   
   /* Priority Queue with Custom Comparator*/
+  bool cmp_pq(vector<int> a, vector<int> b) 
+  { 
+    return a[1] <= b[1];
+  }
+
   priority_queue<vector<int>, vector<vector<int>>, bool(*)(vector<int>, vector<int>)> pq(cmp_pq);
   vector<int> v1 = {3,0,4,5,6,7};
   vector<int> v2 = {4,1,5,6,7,8};
