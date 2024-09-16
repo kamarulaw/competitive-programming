@@ -1,4 +1,5 @@
 /* SOLUTION 1 */ 
+/* BRUTE FORCE INDEX COMBINATION GENERATION*/
 /* MEMORY LIMIT EXCEEDED on CASE 12 of 28 */
 class Solution {
 public:
