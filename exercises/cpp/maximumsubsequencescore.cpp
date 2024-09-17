@@ -61,7 +61,7 @@ public:
     }
 };
 
-/* SOLUTION 1 */ 
+/* SOLUTION 2 */ 
 /* BRUTE FORCE INDEX COMBINATION GENERATION*/
 /* MEMORY LIMIT EXCEEDED on CASE 12 of 28 w/out saving index subsets*/
 class Solution {
