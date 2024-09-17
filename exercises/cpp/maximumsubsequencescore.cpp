@@ -120,3 +120,37 @@ public:
         return maxscore; 
     }
 };
+/* SOLUTION 3 progress*/
+class Solution {
+public:
+    static bool n1n2zipcmp(vector<int> v1, vector<int> v2)
+    {
+        return v1[1] >= v2[1];
+    }
+
+    static bool pqcmp(int i, int j)
+    {
+        return i >= j;
+    }
+
+    long long maxScore(vector<int>& nums1, vector<int>& nums2, int k) 
+    {
+        priority_queue<int, vector<int>, bool(*)(int,int)> pq(pqcmp);
+        vector<vector<int>> n1n2zip;
+        for (int i = 0; i < nums1.size(); i++)
+        {
+            vector<int> v;
+            v.push_back(nums1[i]);
+            v.push_back(nums2[i]);
+
+            n1n2zip.push_back(v);
+        }
+        sort(n1n2zip.begin(), n1n2zip.end(), n1n2zipcmp);
+
+        for (int i = 0; i < n1n2zip.size(); i++)
+        {
+            cout << "n1: " << n1n2zip[i][0] << " , " << "n2: " << n1n2zip[i][1] << endl;
+        }
+        return 0;
+    }
+};
