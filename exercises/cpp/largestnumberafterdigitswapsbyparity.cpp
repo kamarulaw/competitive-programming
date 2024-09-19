@@ -39,7 +39,8 @@ public:
 };
 
 /* SOLUTION 2 */ 
-/* progress so far */
+/* pretests passed */
+/* RUNTIME ERROR on CASE 2 of 238 */
 class Solution {
 public:
     vector<int> oddindices;
@@ -96,31 +97,31 @@ public:
         vector<vector<int>> evenindexpermsv(evenindexperms.begin(),evenindexperms.end());
 
         for (int i = 0; i < oddindexpermsv.size(); i++)
-        {
-            string numasstring = "";
-            vector<int> oip = oddindexpermsv[i];
+        {  
             for (int j = 0; j < evenindexperms.size(); j++)
             {
+                vector<int> oip = oddindexpermsv[i];
                 vector<int> eip = evenindexpermsv[j];
                 int k_ = 0;
+                string numasstring = "";
                 for (int k = 0; k < num_.length(); k++)
                 {
                     if (index_digit_map[k_]%2 == 0)   
                     {
-                        numasstring += char(index_digit_map[eip[0]]);
+                        numasstring += to_string(index_digit_map[eip[0]]);
                         eip.erase(eip.begin());
                     }
                     else 
                     {
-                        numasstring += char(index_digit_map[oip[0]]); 
+                        numasstring += to_string(index_digit_map[oip[0]]); 
                         oip.erase(oip.begin());
                     }
+                    k_++;
                 }
                 candidates.push_back(stoi(numasstring));
             }
         }
         sort(candidates.begin(),candidates.end());
-        reverse(candidates.begin(),candidates.end());
-        return candidates[0];
+        return candidates[candidates.size()-1];
     }
 };
