@@ -126,7 +126,7 @@ public:
     }
 };
 /* SOLUTION 3 */ 
-/* progres so far */
+/* TIME LIMIT EXCEEDED ON CASE 212 of 228 */
 class Solution {
 public:
     vector<int> oddindices;
@@ -160,7 +160,6 @@ public:
         string num_ = to_string(num);
         map<int,int> index_digit_map;
         vector<int> candidates;
-
         for (int i = 0; i < num_.length(); i++)
         {
             int chartoint = num_[i] - '0';
@@ -174,14 +173,11 @@ public:
                 oddindices.push_back(i);
             }
         }
-
         vector<int> arr;
         largestIntegerUtil(0,evenindices,false);
         largestIntegerUtil(0,oddindices,true);
-
         vector<vector<int>> oddindexpermsv(oddindexperms.begin(),oddindexperms.end());
         vector<vector<int>> evenindexpermsv(evenindexperms.begin(),evenindexperms.end());
-
         if (oddindices.size() > 0 && evenindices.size() > 0)
         {
             for (int i = 0; i < oddindexpermsv.size(); i++)
@@ -206,14 +202,14 @@ public:
                         }
                         k_++;
                     }
-                        candidates.push_back(stoi(numasstring));
+                    candidates.push_back(stoi(numasstring));
                 }
             }
         }
-        else if (oddindicies.size() > 0 || evenindicies.size() > 0)
+        else if (oddindices.size() > 0 || evenindices.size() > 0)
         {
             vector<vector<int>> ips;
-            if (oddindicies.size() > 0)
+            if (oddindices.size() > 0)
             {
                 ips = oddindexpermsv;
             }
@@ -224,10 +220,13 @@ public:
             for (int i = 0; i < ips.size(); i++)
             {
                 vector<int> ip = ips[i];
-                for (int k = 0; k < nums_.length(); k++)
+                string numasstring = "";
+                for (int k = 0; k < num_.length(); k++)
                 {
-                    numasstring += to_string(no theres no love, she dont even like me)
+                    numasstring += to_string(index_digit_map[ip[0]]);
+                    ip.erase(ip.begin());
                 }
+                candidates.push_back(stoi(numasstring));
             }
         }
         sort(candidates.begin(),candidates.end());
