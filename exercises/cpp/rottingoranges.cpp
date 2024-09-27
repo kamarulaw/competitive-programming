@@ -1,5 +1,5 @@
 /* SOLUTION 1 */ 
-/* psf */
+/* PRE-TESTS 1 & 3 Passed */
 class Solution {
 public:
     bool inbounds(int m, int n, int x, int y)
@@ -54,9 +54,9 @@ public:
         }
 
 
-        if (start.size() == 0)
+        if (onecount == 0)
         {
-            return -1;
+            return 0;
         }
 
         int timeelapsed = 0; 
@@ -95,11 +95,6 @@ public:
             vector<int> front = q.front();
             q.pop();
 
-            if (onecount == 0)
-            {
-                return front[2];
-            }
-
             for (auto d: dirs)
             {
                 int newx = front[0] + d[0]; 
@@ -122,12 +117,19 @@ public:
                     visited[coord[0]][coord[1]] = true; 
                 }
             }
+
+            if (onecount == 0)
+            {
+                return front[2]+1;
+            }
+
         }
 
         if (onecount > 0)
         {
             return -1;
         }
+
         return m*n;
     }
 };
