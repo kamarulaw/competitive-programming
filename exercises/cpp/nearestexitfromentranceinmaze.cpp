@@ -1,5 +1,5 @@
 /* SOLUTION 1 */ 
-/* progress so far */ 
+/* All tests passed */ 
 class Solution {
 public:
     bool inbounds(int m, int n, int x, int y)
@@ -19,15 +19,16 @@ public:
 
     bool onboundary(int m, int n, int x, int y)
     {
-        if (x == m-1)
+        if (x == m-1 || x == 0)
         {
             return true;
         }
-         
-        if (y == n-1)
+
+        if (y == n-1 || y == 0)
         {
             return true;
         }
+
         return false; 
     }
 
@@ -80,7 +81,15 @@ public:
 
         while (q.size() > 0)
         {
-            vector<int> front = q.front(); q.pop();
+            vector<int> front = q.front(); 
+            
+            q.pop();
+            
+            if (onboundary(m, n, front[0], front[1]) && front[2] != 0)
+            {
+                return front[2];
+            }
+
             for (auto d: dirs) 
             {
                 int newX = front[0] + d[0]; 
@@ -91,17 +100,12 @@ public:
                     vector<int> coord;
                     coord.push_back(newX);
                     coord.push_back(newY); 
-                    coord.push_back(front[2] + 1);
-
-                    if (onboundary(m, n, front[0], front[1]) && front[2] != 0)
-                    {
-                        return front[2];
-                    }
+                    coord.push_back(front[2]+1);
 
                     if (maze[coord[0]][coord[1]] == '.')
                     {
                         q.push(coord);
-                        visited[newX][newY] = true;
+                        visited[coord[0]][coord[1]] = true;
                     }
                 }
             }
