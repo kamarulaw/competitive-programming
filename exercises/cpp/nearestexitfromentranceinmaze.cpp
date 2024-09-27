@@ -53,7 +53,7 @@ public:
 
         entrance.push_back(0);
         q.push(entrance);
-        visited[entrance[0], entrance[1]] = true; 
+        visited[entrance[0]][entrance[1]]= true; 
         
         vector<vector<int>> dirs; 
         vector<int> dir;
@@ -80,8 +80,7 @@ public:
 
         while (q.size() > 0)
         {
-            vector<int> front = q.top();
-            q.pop();
+            vector<int> front = q.front(); q.pop();
             for (auto d: dirs) 
             {
                 int newX = front[0] + d[0]; 
@@ -89,18 +88,21 @@ public:
 
                 if (inbounds(m, n, newX, newY) && visited[newX][newY] == false)
                 {
-                    if (onboundary(m. n. front[0], front[1]))
-                    {
-                        return front[2];
-                    }
-
                     vector<int> coord;
                     coord.push_back(newX);
                     coord.push_back(newY); 
                     coord.push_back(front[2] + 1);
 
-                    q.push_back(coord);
-                    visited[newX][newY] = true;
+                    if (onboundary(m, n, front[0], front[1]) && front[2] != 0)
+                    {
+                        return front[2];
+                    }
+
+                    if (maze[coord[0]][coord[1]] == '.')
+                    {
+                        q.push(coord);
+                        visited[newX][newY] = true;
+                    }
                 }
             }
         }
