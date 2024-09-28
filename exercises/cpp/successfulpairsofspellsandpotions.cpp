@@ -12,29 +12,33 @@ public:
             int lo = 0;
             int hi = potions.size() - 1;
             long long product = 1;
-            bool condsat = false;
-            while (condsat == false)
+            bool elempushed = false;
+            while (lo < hi)
             {
                 int mid = lo + (hi-lo)/2;
                 product = spells[i] * potions[mid];
-                if (product == success)
+                if (product >= success)
                 {
-                    while (mid-1 >= 0 && product == success)
+                    while (mid-1 >= 0 && spells[i]*potions[mid-1] >= success)
                     {
-                        if (mid-1 >= 0 && spells[i]*potions[mid-1])
-                        {
-                            mid = mid-1;
-                        }
+                        product = spells[i]*potions[mid-1];
+                        mid -= mid-1;
                     }
-                    condsat = true;
                     result.push_back(mid);
+                    elempushed = true;
+                    break;
                 }
                 else if (product < success) 
                 {
                     lo = mid + 1; 
                 }
             }
-            condsat = false;
+
+            if (elempushed == false)
+            {
+                result.push_back(0);
+            }
+            elempushed = false;
         }
         return result;     
     }
