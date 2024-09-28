@@ -1,5 +1,5 @@
 /* SOLUTION 1 */ 
-/* psf */
+/* WRONG ANSWER ON CASE 37 of 56 */
 class Solution {
 public:
     vector<int> successfulPairs(vector<int>& spells, vector<int>& potions, long long success) 
@@ -22,9 +22,9 @@ public:
                     while (mid-1 >= 0 && spells[i]*potions[mid-1] >= success)
                     {
                         product = spells[i]*potions[mid-1];
-                        mid -= mid-1;
+                        mid = mid-1;
                     }
-                    result.push_back(mid);
+                    result.push_back(hi - mid + 1);
                     elempushed = true;
                     break;
                 }
