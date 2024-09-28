@@ -19,16 +19,19 @@ public:
                 product = spells[i] * potions[mid];
                 if (product == success)
                 {
-                    result.push_back(potions.size() - mid + 1);
+                    while (mid-1 >= 0 && product == success)
+                    {
+                        if (mid-1 >= 0 && spells[i]*potions[mid-1])
+                        {
+                            mid = mid-1;
+                        }
+                    }
                     condsat = true;
+                    result.push_back(mid);
                 }
-                else if (product > success) 
+                else if (product < success) 
                 {
-                    hi = mid-1;
-                }
-                else 
-                {
-                    lo = mid+1;
+                    lo = mid + 1; 
                 }
             }
             condsat = false;
