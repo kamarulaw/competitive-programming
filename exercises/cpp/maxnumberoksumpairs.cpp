@@ -39,3 +39,33 @@ public:
         return ops;
     }
 };
+
+/* SOLUTION 2 */ 
+/* All tests passed */
+class Solution {
+public:
+    int maxOperations(vector<int>& nums, int k) 
+    {
+        int ops = 0; 
+
+        int n = nums.size();
+
+        map<int,int> m;
+        
+        for (int i = 0; i < n; i++)
+        {
+            m[nums[i]]++;
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            if (nums[i] != k-nums[i] && (m[nums[i]] > 0 && m[k-nums[i]] > 0) || (nums[i]==k-nums[i] && (m[nums[i]]>1)))
+            {
+                ops++;
+                m[nums[i]]--; 
+                m[k-nums[i]]--; 
+            }
+        }
+        return ops;
+    }
+};
