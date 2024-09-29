@@ -152,6 +152,7 @@ public:
 
 /* SOLUTION 4 */ 
 /* TIME LIMIT EXCEEDED ON CASE 54 of 56 */
+/* mid search is linear for right-skewed distributions => keep ">=" code for "=", come up with idea for ">" */
 class Solution {
 public:
     vector<int> successfulPairs(vector<int>& spells, vector<int>& potions, long long success) 
