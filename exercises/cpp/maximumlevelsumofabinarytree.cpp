@@ -1,14 +1,5 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
+/* SOLUTION 1 */ 
+/* WRONG ANSWER ON CASE 39 of 41 */ 
 class Solution {
 public:
     map <int, vector<long long int>> m;
@@ -47,5 +38,29 @@ public:
       }
       sort(sums.begin(), sums.end(), comp1);
       return sums[sums.size()-1][0];
+    }
+};
+
+/* SOLUTION 2 */ 
+/* psf */ 
+class Solution {
+public:
+    vector<int> levelsums;
+    
+    int treeheight(TreeNode* root)
+    {
+        if (root == NULL)
+        {
+            return 0;
+        }
+        return 1 + max(treeheight(root->left),treeheight(root->right));
+    }
+    
+    int maxLevelSum(TreeNode* root) 
+    {
+        long long maximumsum = LLONG_MIN;
+        long long maximumsumlevel = -1;
+        int numsums = treeheight(root);
+        return 0;
     }
 };
