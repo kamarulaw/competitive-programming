@@ -223,13 +223,12 @@ public:
                 int mid = lo + (hi-lo)/2;
                 long long product = (long long)spells[i] * (long long)potions[mid];
 
-                while (product > success)
+                while (product > success && mid != 0)
                 {
                     product = (long long)spells[i] * (long long)potions[mid/2];
                     mid = mid/2;   
                 }
                 
-
                 if (product == success)
                 {
                     while (mid-1 >= 0 && (long long)spells[i] * (long long)potions[mid-1] >= success)
