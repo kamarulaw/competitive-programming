@@ -1,5 +1,5 @@
 /* SOLUTION 1 */ 
-/* psf */
+/* WRONG ANSWER ON CASE 10 of 59 */
 class Solution {
 public:
     static bool intervalcompare(vector<int> a, vector<int> b)
@@ -45,6 +45,16 @@ public:
         }
     }
 
+    bool intervalsequal(vector<int> a, vector<int> b)
+    {
+        if (a[0] == b[0] && a[1] == b[1])
+        {
+            return true; 
+        }
+
+        return false;
+    }
+
     int eraseOverlapIntervals(vector<vector<int>>& intervals) 
     {
         int curr_interval = 0;
@@ -54,19 +64,18 @@ public:
 
         sort(intervals.begin(),intervals.end(),intervalcompare);
 
-        cout << s.size() << endl; 
         bool consolidated = false;
         while (curr_interval < len)
         {
             while (curr_interval < len && next_interval < len && intervalsintersect(intervals[curr_interval], intervals[next_interval]))
             {
-                next_interval++;
-
-                if (consolidated == false)
+                if ( consolidated == false || intervalsequal(intervals[curr_interval],intervals[next_interval]) )
                 {
                     consolidated = true; 
                     ans++;
                 }
+                
+                next_interval++;
             }
 
             consolidated = false;
