@@ -32,8 +32,8 @@ public:
     }
 };
 
-/* SOLUTION 2 */ 
-/* WRONG ANSWER ON CASE 69 of 84 */
+/* SOLUTION 2 */
+/* TIME LIMIT EXCEEDED ON CASE 75 of 84 */ 
 class Solution {
 public:
     bool increasingTriplet(vector<int>& nums) 
@@ -68,8 +68,9 @@ public:
                         return true;
                     }
                 }
-
             }
+            flag1 = false;
+            flag2 = false; 
         }
         return false;
     }
