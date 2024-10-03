@@ -1,7 +1,6 @@
 /* SOLUTION 1 */ 
 /* WRONG ANSWER ON PRE-TEST 1 */ 
 /* CORRECT ANSWER ON PRE-TESTs 2, 3 */ 
-
 class Solution {
 public:
     int pivotIndex(vector<int>& nums) {
@@ -38,5 +37,45 @@ public:
             }
         }
         return -1; 
+    }
+};
+
+/* SOLUTION 2 */ 
+/* ALl tests passed  */
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) 
+    {
+        int n = nums.size();
+        
+        vector<int> lsums(n); 
+        vector<int> rsums(n); 
+        
+        int arrsum = 0;
+        for (int i = 0; i < n; i++)
+        {
+            arrsum += nums[i];
+        }
+        
+        lsums[0] = 0; 
+        for (int i = 1; i < n; i++)
+        {
+            lsums[i] = nums[i-1] + lsums[i-1];
+        }
+
+        rsums[0] = arrsum - nums[0];
+        for (int i = 1; i < n; i++)
+        {
+            rsums[i] = rsums[i-1] - nums[i];
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            if (lsums[i] == rsums[i])
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 };
