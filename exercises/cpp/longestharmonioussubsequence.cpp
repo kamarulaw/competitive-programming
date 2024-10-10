@@ -80,3 +80,71 @@ public:
 
     }
 };
+
+/* SOLUTION 2 */ 
+/* MEMORY LIMIT EXCEEDED ON CASE 29 of 206 */
+class Solution {
+public:
+    int LHS_ = 0;
+    vector<int> nums_;
+
+    bool isharmonious(vector<int> arr)
+    {
+        int mx = INT_MIN;
+        int mn = INT_MAX;
+        for (int i = 0; i < arr.size(); i++)
+        {
+            mx = max(mx, arr[i]); 
+            mn = min(mn, arr[i]);
+        }
+        int diff = mx - mn;
+        return diff == 1;
+    }
+
+    void subseqgen(vector<int> arr, vector<bool> visited, int i, int n)
+    {
+        if (i == n)
+        {
+            vector<int> subseq;
+            for (int i = 0; i < n; i++) 
+            {
+                if (visited[i] == true)
+                {
+                    subseq.push_back(arr[i]);
+                }
+            }
+
+            if (subseq.size() > 0 && isharmonious(subseq))
+            {
+                if (subseq.size() > LHS_)
+                {
+                    LHS_ = subseq.size();
+                }
+            }
+
+            return;
+        }
+
+        subseqgen(arr, visited, i+1, n);
+        visited[i] = true;
+        subseqgen(arr, visited, i+1, n);
+    }
+
+
+    int findLHS(vector<int>& nums) 
+    {
+        nums_ = nums;
+
+        sort(nums.begin(),nums.end());
+        
+        if (nums[0] == nums[nums.size()-1])
+        {
+            return 0;
+        }
+
+        vector<bool> visited(nums.size(), false);
+        subseqgen(nums, visited, 0, nums_.size());  
+        
+        return LHS_;
+    }
+};
