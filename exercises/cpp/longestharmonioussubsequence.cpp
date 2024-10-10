@@ -113,7 +113,6 @@ public:
                     subseq.push_back(arr[i]);
                 }
             }
-
             if (subseq.size() > 0 && isharmonious(subseq))
             {
                 if (subseq.size() > LHS_)
@@ -121,10 +120,8 @@ public:
                     LHS_ = subseq.size();
                 }
             }
-
             return;
         }
-
         subseqgen(arr, visited, i+1, n);
         visited[i] = true;
         subseqgen(arr, visited, i+1, n);
@@ -134,17 +131,13 @@ public:
     int findLHS(vector<int>& nums) 
     {
         nums_ = nums;
-
         sort(nums.begin(),nums.end());
-        
         if (nums[0] == nums[nums.size()-1])
         {
             return 0;
         }
-
         vector<bool> visited(nums.size(), false);
         subseqgen(nums, visited, 0, nums_.size());  
-        
         return LHS_;
     }
 };
