@@ -1,3 +1,5 @@
+/* SOLUTION 1 */ 
+/* All tests passed */
 class Solution {
 public:
     bool chardig(char c)
