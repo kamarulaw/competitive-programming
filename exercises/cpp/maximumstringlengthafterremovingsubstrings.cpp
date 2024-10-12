@@ -93,3 +93,63 @@ public:
         return inds;
     }
 };
+
+/* SOLUTION 1 RE-FACTORED*/
+/* All tests passed */
+class Solution {
+public:
+    int minLength(string s) 
+    {
+        int n = s.length();
+        vector<char> sarr;
+        vector<char> newsarr;
+
+        for (int i = 0; i < n; i++)
+        {
+            sarr.push_back(s[i]);
+        }
+        bool cond = true;
+        while (cond)
+        {
+            int ind = inds(sarr)[0];
+            if (ind != -1)
+            {
+                //sarr.erase(sarr.begin() + ab_inds(sarr)[1]);
+                //sarr.erase(sarr.begin() + ab_inds(sarr)[0]);
+                
+                for (int i = 0; i < sarr.size(); i++) 
+                {
+                    if (i != ind && i != ind+1)
+                    {
+                        newsarr.push_back(sarr[i]);
+                    }
+                }
+                sarr = newsarr;
+                newsarr.clear();
+            }
+            else
+            {
+                cond = false;
+            }
+        }
+
+        return sarr.size();
+
+    }
+
+    vector<int> inds(vector<char> s)
+    {
+        int n = s.size();
+        vector<int> inds;
+        for (int i = 0; i < n-1; i++)
+        {
+            if ((s[i] == 'A' && s[i+1] == 'B') || (s[i] == 'C' && s[i+1] == 'D'))
+            {
+                inds.push_back(i);
+                return inds;
+            }
+        }
+        inds.push_back(-1);
+        return inds;
+    }
+};
