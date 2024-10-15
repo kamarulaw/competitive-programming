@@ -44,7 +44,7 @@ public:
 };
 
 /* SOLUTION 1 RE-FACTORED */ 
-/* ? */
+/* All tests passed */
 class Solution {
 public:
     string reversePrefix(string word, char ch) 
