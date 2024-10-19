@@ -16,6 +16,7 @@ public:
     void traversal(int src, int dst, vector<vector<int>> graph, vector<bool> vis, map<string,int> wm, int n, string path)
     {
         vis[src] = true;
+
         if (src == dst)
         {
             path += " ";
@@ -25,9 +26,13 @@ public:
         }
         for (int i = 0; i < graph[src].size(); i++)
         {
-            path += " ";
-            path += to_string(graph[src][i]);
-            traversal(graph[src][i],dst,graph,vis,wm,n,path);
+            if (!vis[graph[src][i]])
+            {
+                path += " ";
+                path += to_string(graph[src][i]);
+                cout << path << endl;
+                traversal(graph[src][i],dst,graph,vis,wm,n,path);
+            }
         }
     }
 
@@ -46,19 +51,37 @@ public:
         for (int i = 0; i < edges.size(); i++)
         {
             string e0e1 = ""; 
-            e0e1 += to_string(edges[i][0]); e0e1 += " "; e0e1 += to_string(edges[i][1]);
             string e1e0 = "";
+            e0e1 += to_string(edges[i][0]); e0e1 += " "; e0e1 += to_string(edges[i][1]);
             e1e0 += to_string(edges[i][1]); e1e0 += " "; e1e0 += to_string(edges[i][0]);
+            weightmap[e0e1] = edges[i][2];
+            weightmap[e1e0] = edges[i][2];
+
             graph[edges[i][0]].push_back(edges[i][1]);
             graph[edges[i][1]].push_back(edges[i][0]);   
             
         }
+
+        /* verify bidirectional-unweighted edge creation 
+        for (int i = 0; i < graph.size(); i++)
+        {
+            cout << i << " | ";
+            for (int j = 0; j < graph[i].size(); j++)
+            {
+                cout << graph[i][j] << " ";
+            }
+            cout << endl;
+        }
+        */
+        
         initializeResult(n);
         for (int i = 0; i < n-1; i++)
         {
             for (int j = i+1; j < n; j++)
             {
+                cout << "[" << i << " " << j << "]" << endl;
                 traversal(i,j,graph,visited,weightmap,n,to_string(i));
+                cout << endl;
             }
         }
         return result;
