@@ -13,25 +13,24 @@ public:
         return;
     }
 
-    void traversal(int src, int dst, vector<vector<int>> graph, vector<bool> vis, map<string,int> wm, int n, string path)
+    void traversal(int src, int dst, vector<vector<int>> graph, vector<bool> v, map<string,int> wm, int n, vector<int> path)
     {
-        vis[src] = true;
+        v[src] = true;
 
         if (src == dst)
         {
-            path += " ";
-            path += to_string(dst);
-            cout << path << endl;
+            path.push_back(dst);
             return;
         }
         for (int i = 0; i < graph[src].size(); i++)
         {
-            if (!vis[graph[src][i]])
+            if (!v[graph[src][i]])
             {
                 path += " ";
                 path += to_string(graph[src][i]);
                 cout << path << endl;
                 traversal(graph[src][i],dst,graph,vis,wm,n,path);
+                path.pop_back();
             }
         }
     }
@@ -73,14 +72,13 @@ public:
             cout << endl;
         }
         */
-        
         initializeResult(n);
         for (int i = 0; i < n-1; i++)
         {
             for (int j = i+1; j < n; j++)
             {
                 cout << "[" << i << " " << j << "]" << endl;
-                traversal(i,j,graph,visited,weightmap,n,to_string(i));
+                traversal(i,j,graph,visited,weightmap,n,{i});
                 cout << endl;
             }
         }
