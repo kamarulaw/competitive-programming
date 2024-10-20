@@ -1,3 +1,5 @@
+/* SOLUTION 1 - 8/26/21*/ 
+/* All tests passed */
 class Solution {
 public:
     bool validPath(int n, vector<vector<int>>& edges, int start, int end) {
@@ -43,4 +45,49 @@ public:
       }
       return false;
     } 
+};
+
+/* SOLUTION 2 - 10/20/24 */
+/* All tests passed */
+class Solution {
+public:
+    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) 
+    {
+        if (edges.size() == 0 || source == destination)
+        {
+            return true; 
+        }
+        vector<int> v;
+        vector<bool> visited(n,false);
+        vector<vector<int>> graph(n,v);
+
+        for (int i = 0; i < edges.size(); i++)
+        {
+            graph[edges[i][0]].push_back(edges[i][1]);
+            graph[edges[i][1]].push_back(edges[i][0]);
+        }
+        queue<int> q;
+        q.push(source);
+        visited[source] = true;
+
+        while (q.size() > 0)
+        {
+            int front = q.front();
+            q.pop();
+
+            for (int node_index = 0; node_index < graph[front].size(); node_index++)
+            {
+                if (!visited[graph[front][node_index]])
+                {
+                    if (graph[front][node_index] == destination)
+                    {
+                        return true;
+                    }
+                    q.push(graph[front][node_index]);
+                    visited[graph[front][node_index]] = true;
+                }
+            }
+        }
+        return false;
+    }
 };
