@@ -1,4 +1,4 @@
-/* SOLUTION 1 - 8/27/21 */
+/* SOLUTION 1 - Recursive - 8/27/21 */
 /* All tests passed */
 class Solution {
 public:
@@ -46,7 +46,7 @@ public:
   }
 };
 
-/* SOLUTION 2 - 10/21/24 */
+/* SOLUTION 2 - Iterative - 10/21/24 */
 /* All tests passed */
 class Solution {
 public:
