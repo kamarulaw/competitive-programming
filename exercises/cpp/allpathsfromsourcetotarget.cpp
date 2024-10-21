@@ -47,7 +47,7 @@ public:
 };
 
 /* SOLUTION 2 - 10/21/24 */
-/* psf */
+/* All tests passed */
 class Solution {
 public:
     vector<vector<int>> src_to_dst_paths;
@@ -66,19 +66,21 @@ public:
         while (s.size() > 0)
         {
             int top_index = s.top().first; 
+            pair<int,pair<vector<int>,vector<bool>>> top = s.top();
+            s.pop();
             for (int i = 0; i < adjlist[top_index].size(); i++)
             {
-                if (!s.top().second.second[adjlist[top_index][i]])
+                if (!top.second.second[adjlist[top_index][i]])
                 {
-                    vector<int> newpath = s.top().second.first;
+                    vector<int> newpath = top.second.first;
                     newpath.push_back(adjlist[top_index][i]);
-                    vector<int> newvisited = s.top().second.second;
+                    vector<bool> newvisited = top.second.second;
                     newvisited[adjlist[top_index][i]] = true;
                     pair<int,pair<vector<int>,vector<bool>>> newpair;
                     newpair.first = adjlist[top_index][i];
                     newpair.second.first = newpath;
                     newpair.second.second = newvisited;
-                    s.push(newpair)
+                    s.push(newpair);
                     if (adjlist[top_index][i] == dst)
                     {
                         src_to_dst_paths.push_back(newpath);
