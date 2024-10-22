@@ -1,15 +1,16 @@
-/* SOLUTION 1 */
-/* psf */
+/* SOLUTION 1 */ 
+/* TIME LIMIT EXCEEDED ON CASE 4 of 56 */
 class Solution {
 public:
     vector<int> relevant_prices;
 
     void dfs(int src, int dst, vector<vector<int>> g, map<string,int> m, vector<bool> visited, int n, int k)
     {
-        pair<vector<int>, vector<bool>> start;
+        visited[src] = true;
+        pair<vector<int>,vector<bool>> start;
         start.first = {}; 
         start.first.push_back(src);
-        start.first.push_back(0);
+        start.first.push_back(-1);
         start.first.push_back(0);
         start.second = visited;
         stack<pair<vector<int>,vector<bool>>> stack_;
@@ -19,6 +20,7 @@ public:
             int node = stack_.top().first[0]; 
             int stops = stack_.top().first[1]; 
             int price = stack_.top().first[2];
+            cout << node << " " << stops << " " << price << endl;
             vector<bool> vis = stack_.top().second;
             stack_.pop();
             for (int i = 0; i < g[node].size(); i++)
@@ -34,6 +36,7 @@ public:
                     newtop.first.push_back(stops + 1);
                     newtop.first.push_back(price + m[m_str]);
                     newtop.second = vis;
+                    stack_.push(newtop);
                     if (stops + 1 <= k && g[node][i] == dst)
                     {
                         relevant_prices.push_back(price + m[m_str]);
@@ -41,13 +44,14 @@ public:
                 }
             }
         }
+        return;
     }
 
     int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) 
     {
         vector<int> v;
-        vector<vector<int>> g(n,v);
         map<string,int> m;
+        vector<vector<int>> g(n,v);
         vector<bool> visited(n,false);   
         for (int i = 0; i < flights.size(); i++)
         {
@@ -58,7 +62,11 @@ public:
             m[src_dst_str] = flights[i][2];
         }
         dfs(src, dst, g, m, visited, n, k);
-        sort(relevant_prices.begin(),relevant_prices.end());
-        return relevant_prices[0];
+        if (relevant_prices.size() > 0)
+        {
+            sort(relevant_prices.begin(),relevant_prices.end());
+            return relevant_prices[0];
+        }
+        return -1;
     }
 };
