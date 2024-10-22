@@ -51,3 +51,46 @@ public:
         return onesize == zerosize;
     }
 };
+
+/* SOLUTION 2 */ 
+/* All tests passed */ 
+class Solution {
+public:
+    bool isBipartite(vector<vector<int>>& graph) 
+    {
+        int n = graph.size();
+        vector<int> v;
+        vector<vector<int>> g(n,v);
+        for (int i = 0; i < graph.size(); i++)
+        {
+            for (int j = 0; j < graph[i].size(); j++)
+            {
+                g[i].push_back(graph[i][j]);
+                g[graph[i][j]].push_back(i);
+            }
+        }
+        for (int j = 0; j < n; j++)
+        {
+            vector<int> color(n,-1);
+            queue<int> q; 
+            q.push(j);
+            while (q.size() > 0)
+            {
+                int front = q.front(); q.pop();
+                for (int i = 0; i < g[front].size(); i++)
+                {
+                    if (color[g[front][i]] == -1)
+                    {
+                        color[g[front][i]] = 1 - color[front];
+                        q.push(g[front][i]);
+                    }
+                    else if (color[g[front][i]] == color[front])
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+};
