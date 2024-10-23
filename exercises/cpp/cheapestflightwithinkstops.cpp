@@ -96,7 +96,7 @@ public:
             
             vector<bool> vis = stack_.top().second;
             stack_.pop();
-            string m_str = to_string(node);
+            string m_str = to_string(node); // put inside for loop 
             m_str += " ";
             for (int i = 0; i < g[node].size(); i++)
             {    
