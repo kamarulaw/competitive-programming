@@ -72,7 +72,7 @@ public:
 };
 
 /* SOLUTION 2 */ 
-/* psf */
+/* WRONG ANSWER ON CASE 37 of 56 */ 
 class Solution {
 public:
     vector<int> relevant_prices;
@@ -96,25 +96,24 @@ public:
             
             vector<bool> vis = stack_.top().second;
             stack_.pop();
-            string m_str = to_string(node); // put inside for loop 
-            m_str += " ";
+            
             for (int i = 0; i < g[node].size(); i++)
             {    
                 if (!vis[g[node][i]])
                 {
                     vis[g[node][i]] = true;
+                    string m_str = to_string(node); 
+                    m_str += " ";
                     m_str += to_string(g[node][i]);
-                    stops++;
-                    price += m[m_str];
-                    if (stops <= k && g[node][i] == dst)
+                    if (stops + 1 <= k && g[node][i] == dst)
                     {
-                        relevant_prices.push_back(price);
+                        relevant_prices.push_back(price + m[m_str]);
                     }
                     pair<vector<int>,vector<bool>> newtop;
                     newtop.first = {};
                     newtop.first.push_back(g[node][i]);
-                    newtop.first.push_back(stops);
-                    newtop.first.push_back(price);
+                    newtop.first.push_back(stops + 1);
+                    newtop.first.push_back(price + m[m_str]);
                     newtop.second = vis;
                     stack_.push(newtop);
                 }
