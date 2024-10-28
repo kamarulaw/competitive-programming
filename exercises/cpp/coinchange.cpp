@@ -90,7 +90,8 @@ public:
                     coinchangeutil(dp[i-j],amount-i+j,true);
                     if (sol.size() > 0)
                     {
-                        dp[i-j] = sol[0];
+                        dp[i] = sol[0];
+                        break;
                     }
                 }
             }
