@@ -45,7 +45,6 @@ class Solution {
 public:
     vector<int> coins_;
     vector<int> sol;
-    int fewestnumcoins = INT_MAX;
     
     void coinchangeutil(int numcoins, int amount, bool startflag)
     {
@@ -78,10 +77,18 @@ public:
         int n = coins.size();
         coins_ = coins;
         sort(coins_.begin(), coins_.end());
-        reverse(coins_.begin(), coins_.end());
-        vector<int> dp(n+1,INT_MAX);
+        vector<int> dp(amount+1,INT_MAX);
         dp[0] = 0;
-        for (int i = 1; i <= n; i++)
+        for (int i = 0; i < coins_[0]; i++)
+        {
+            dp[i] = -1;
+        }
+        for (int i = 0; i < coins_.size(); i++)
+        {   
+            dp[coins_[i]] = 1;
+        }      
+        reverse(coins_.begin(), coins_.end());
+        for (int i = 1; i <= amount; i++)
         {
             for (int j = 1; j <= i; j++)
             {
@@ -99,3 +106,4 @@ public:
         return dp[n];
     }
 };
+
