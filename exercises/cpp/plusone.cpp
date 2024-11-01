@@ -13,13 +13,13 @@ public:
         else
         {
             int k = n-1;
-            while (digits[k] == 9)
+            while (k >= 0 && digits[k] == 9)
             {
                 digits[k] == 0;
                 k--;
             } 
 
-            if (k >= 0)
+            if (k == -1)
             {
                 digits[k]++;
                 return digits;
