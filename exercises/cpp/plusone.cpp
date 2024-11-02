@@ -1,5 +1,5 @@
 /* SOLUTION 1 */ 
-/* psf */
+/* All tests passed */
 class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) 
@@ -15,18 +15,19 @@ public:
             int k = n-1;
             while (k >= 0 && digits[k] == 9)
             {
-                digits[k] == 0;
+                digits[k] = 0;
                 k--;
             } 
 
             if (k == -1)
             {
-                digits[k]++;
+               
+                digits.insert(digits.begin(),1);
                 return digits;
             }
             else 
             {
-                digits.insert(digits.begin(),1);
+                digits[k]++;
                 return digits;
             }
            
