@@ -25,6 +25,7 @@ public:
                     midh = midh + 1; 
                 }
                 ans.push_back(midh);
+                break;
             }
             else if (nums[mid] < target)
             {
