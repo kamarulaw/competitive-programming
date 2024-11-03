@@ -1,5 +1,5 @@
 /* SOLUTION 1 */ 
-/* psf */
+/* All tests passed */
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) 
