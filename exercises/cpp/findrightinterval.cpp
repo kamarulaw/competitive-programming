@@ -1,5 +1,7 @@
 /* SOLUTION 1 */
 /* WRONG ANSWER ON CASE 18 of 20 */
+/* expected output is incorrect */
+/* intervals = [[1,1],[3,4]], output = [1,-1], expected = [0,-1] */
 class Solution {
 public:
     vector<int> findRightInterval(vector<vector<int>>& intervals) 
