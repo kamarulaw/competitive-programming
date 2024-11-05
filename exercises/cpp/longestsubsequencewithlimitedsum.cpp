@@ -1,5 +1,5 @@
 /* SOLUTION 1 */
-/* WRONG ANSWER ON CASE 56 of 57 */
+/* All tests passed */
 class Solution {
 public:
     vector<int> answerQueries(vector<int>& nums, vector<int>& queries) 
@@ -18,6 +18,7 @@ public:
                 {
                     sum += nums[numsind];
                     numsind++;
+                    answer[i] = numsind;
                 }
                 if (sum == queries[i])
                 {
