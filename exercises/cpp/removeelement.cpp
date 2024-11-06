@@ -48,3 +48,30 @@ public:
         return count;    
     }
 };
+
+/* SOLUTION 3 */
+/* psf */
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) 
+    {
+        int n = nums.size();
+        int count = 0;
+        int badindloc = nums.size()-1;
+        for (int i = 0; i < n; i++)
+        {
+            if (nums[i] == val)
+            {
+                while (badindloc >= 0 && nums[badindloc] == val)
+                {
+                    badindloc--;
+                }
+                int temp = nums[badindloc];
+                nums[badindloc] = nums[i];
+                nums[i] = temp;
+                count++;
+            }
+        }
+        return count;    
+    }
+};
