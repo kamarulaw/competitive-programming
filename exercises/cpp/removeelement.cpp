@@ -75,3 +75,42 @@ public:
         return count;    
     }
 };
+
+/*
+//onlinegdb debug
+#include <iostream>
+#include <vector>
+using namespace std;
+    int removeElement(vector<int> nums, int val) 
+    {
+        int n = nums.size();
+        int count = 0;
+        int badindloc = nums.size()-1;
+        for (int i = 0; i < n; i++)
+        {
+            if (nums[i] == val)
+            {
+                while (badindloc >= 0 && nums[badindloc] == val)
+                {
+                    badindloc--;
+                }
+                int temp = nums[badindloc];
+                nums[badindloc] = nums[i];
+                nums[i] = temp;
+                count++;
+            }
+        }
+        for (int i = 0; i < nums.size(); i++)
+        {
+            cout << nums[i] << " ";
+        }
+        cout << count << endl;
+        return count;    
+    }
+    
+    
+    int main()
+    {
+        removeElement({0,1,2,2,3,0,4,2},2);
+    }
+*/
