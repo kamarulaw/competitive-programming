@@ -16,3 +16,35 @@ public:
         return k;
     }
 };
+
+/* SOLUTION 2 */
+/* psf */
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) 
+    {
+        int n = nums.size();
+        int count = 0;
+        int badindloc = nums.size()-1;
+        for (int i = 0; i < n; i++)
+        {
+            if (nums[i] == val)
+            {
+                count++;
+            }
+
+            while(nums[i] == val)
+            {
+                if (nums[badindloc] != val) 
+                {
+                    int temp = nums[badindloc];
+                    nums[badindloc] = nums[i];
+                    nums[i] = temp;
+                    badindloc--;
+                    break;
+                }
+            }
+        }
+        return count;    
+    }
+};
