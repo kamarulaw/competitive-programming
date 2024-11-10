@@ -26,27 +26,28 @@ public:
         // how many ways are
 
         int n = arr.size();
-        for (int i = 1; i <= n-2; i++)
+        for (int i = 1; i <= n-2; i++) 
         {
+            vector<int> group1;
+            for (int ii = 0; ii < i; ii++)
+            {
+                group1.push_back(arr[ii]);
+            }
             for (int j = i+1; j <= n-1; j++)
             {
+                vector<int> group2;
+                for (int jj = i; jj < j; jj++)
+                {
+                    group2.push_back(arr[jj]);
+                }
                 for (int k = j+1; j <= n; j++)
                 {
-                    vector<int> group1;
-                    vector<int> group2;
                     vector<int> group3;
-                    for (int ii = 0; ii < i; ii++)
-                    {
-                        group1.push_back(arr[ii]);
-                    }
-                    for (int jj = i; jj < j; jj++)
-                    {
-                        group2.push_back(arr[jj]);
-                    }
                     for (int kk = j; kk < k; kk++)
                     {
                         group3.push_back(arr[kk]);
                     }
+                    cout << group1.size() << " " << group2.size() << " " << group3.size() << endl;
                     if (groupsum(group1) == groupsum(group3) && groupsum(group2) == groupsum(group1))
                     {
                         return true;
