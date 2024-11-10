@@ -28,9 +28,9 @@ public:
         int n = arr.size();
         for (int i = 1; i <= n-2; i++)
         {
-            for (int j = i; j <= n-1; j++)
+            for (int j = i+1; j <= n-1; j++)
             {
-                for (int k = j; j <= n; j++)
+                for (int k = j+1; j <= n; j++)
                 {
                     vector<int> group1;
                     vector<int> group2;
@@ -54,6 +54,6 @@ public:
                 }
             }
         }
-        return falsse;
+        return false;
     }
 };
