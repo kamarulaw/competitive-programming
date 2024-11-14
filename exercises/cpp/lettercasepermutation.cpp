@@ -1,41 +1,68 @@
 /* SOLUTION 1 */
-/* psf */
+/* All tests passed */
 class Solution {
 public:
-    vector<string> combinations;
-    bool search
-    void generate(int i, int numalpha, string s, vector<bool> combinationswitch, vector<int> alpha_inds)
+    set<string> combinations;
+    void generate(int i, int n, string s, vector<int> charactertracker, vector<bool> casechanged)
     {
-        if (i > n)
+        if (i == n)
         {
-            combinations.push_back(word);
+            string perm = "";
+            for (int j = 0; j < n; j++)
+            {
+                if (charactertracker[j] != -1)
+                {
+                    if (casechanged[j] == false)
+                    {
+                        perm += s[j];
+                    }
+                    else 
+                    {
+                        if (tolower(s[j]) == s[j])
+                        {
+                            perm += toupper(s[j]);
+                        }
+                        else
+                        {
+                            perm += tolower(s[j]);
+                        }
+                    }
+                }
+                else 
+                {
+                    perm += s[j];
+                }
+            }
+            combinations.emplace(perm);
             return;
         }
-        int s_len = s.length();
-        for (int j = 0; j < s_len; j++)
-        {
 
-        }
-        generate(i+1,n,s,combinationswitch);
-        combinationswitch[i] = true;
-        generateu(i+1,n,s,combinationswitch);
+        generate(i+1,n,s,charactertracker,casechanged);
+        casechanged[i] = true;
+        generate(i+1,n,s,charactertracker,casechanged);
     }
 
     vector<string> letterCasePermutation(string s) 
     {
-        int n = s.size(); vector<int> alpha_inds;
+        int n = s.length(); 
         cout << (int)'a' << " " << (int)'z' << " " << (int)'A' << " " << (int)'Z' << endl;
+        vector<int> charactertracker;
         for (int i = 0; i < n; i++)
         {
-            char c = (int)[s[i]];
-            if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
+            int cti = (int)s[i];
+            if ((cti >= 65 && cti <= 90) || 
+                (cti >= 97 && cti <= 122))
             {
-                alpha_inds.push_back(i);
+                charactertracker.push_back(1);
+            }
+            else
+            {
+                charactertracker.push_back(-1);
             }
         }
-        int numalpha = alpha_inds.size();
-        vector<bool> combinationswitch(numalpha, false);
-        generate(0,numalpha,s,combinationswitch, alpha_inds);
-        return {};
+        vector<bool> casechanged(n, false);
+        generate(0,n,s,charactertracker, casechanged);
+        vector<string> vcombinations(combinations.begin(), combinations.end());
+        return vcombinations;
     }
 };
