@@ -5,12 +5,12 @@ public:
     int singleNonDuplicate(vector<int>& nums) 
     {
         // O(log n) time, O(1) space 
-        int lo = 0; 
-        int hi = nums.size()-1;
-        int first = nums[lo];
-        int last = nums[hi];
-        for (int elem = first; elem <= last; elem++)
+        int answer = INT_MAX;
+        for (int elem = nums[0]; elem <= nums[nums.size()-1]; elem++)
         {
+            int lo = 0;
+            int hi = nums.size()-1;
+            cout << lo << " " << hi;
             while (lo <= hi)
             {
                 int mid = lo + (hi - lo) / 2;
@@ -20,11 +20,12 @@ public:
                     {
                         continue;
                     }
-                    if (mid + 1 < nums.size && nums[mid+1] == elem)
+                    if (mid + 1 < nums.size() && nums[mid+1] == elem)
                     {
                         continue;
                     }
-                    return nums[mid];
+                    answer = nums[mid];
+                    break;
                 }
                 else if (nums[mid] < elem)
                 {
@@ -35,6 +36,7 @@ public:
                     hi = mid - 1;
                 }
             }
-        }    
+        }
+        return answer;       
     }
 };
