@@ -36,3 +36,60 @@ public:
         return minlen;
     }
 };
+
+/* SOLUTION 2 */
+/* All tests passed */
+class Solution {
+public:
+    int findShortestSubArray(vector<int>& nums) 
+    {
+        int deg = INT_MIN;
+        vector<int> degnums;
+        map<int,int> m;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            m[nums[i]]++;
+            if (m[nums[i]] > deg)
+            {
+                deg = m[nums[i]];
+            }
+        }
+
+        for (auto it: m)
+        {
+            if (it.second == deg)
+            {
+                degnums.push_back(it.first);
+            }
+        }
+        
+        map<int,vector<int>> ranges;
+        
+        for (int i = 0; i < degnums.size(); i++)
+        {
+            ranges[degnums[i]] = {INT_MAX,INT_MIN};
+        }
+
+        for (int i = 0; i < degnums.size(); i++)
+        {
+            for (int j = 0; j < nums.size(); j++)
+            {
+                if (nums[j] == degnums[i])
+                {
+                    ranges[degnums[i]][0] = min(ranges[degnums[i]][0],j);
+                    ranges[degnums[i]][1] = max(ranges[degnums[i]][1],j);
+                }
+            }
+        }
+
+        int answer = INT_MAX;
+        for (int i = 0; i < degnums.size(); i++)
+        {
+            if (1 + ranges[degnums[i]][1] - ranges[degnums[i]][0] < answer)
+            {
+                answer = 1 + ranges[degnums[i]][1] - ranges[degnums[i]][0];
+            }
+        }
+        return answer;
+    }
+};
