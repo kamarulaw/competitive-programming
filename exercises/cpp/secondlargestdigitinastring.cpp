@@ -40,7 +40,7 @@ public:
             return -1;
         }
         vector<int> vdigits(digits.begin(), digits.end()); sort(vdigits.begin(), vdigits.end()); 
-        return vdigits[1];    
+        return vdigits[vdigits.size()-2]; 
     }
 };
 
