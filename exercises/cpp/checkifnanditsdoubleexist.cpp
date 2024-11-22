@@ -26,3 +26,29 @@ public:
         return false;
     }
 };
+
+/* SOLUTION 2 */
+/* All tests passed */
+class Solution {
+public:
+    bool checkIfExist(vector<int>& arr) 
+    {
+        map<int,int> m;
+        for (int i = 0; i < arr.size(); i++)
+        {
+            m[arr[i]]++;
+        }
+        for (auto it: m)
+        {
+            if (it.first == 0 && m[it.first] > 1)
+            {
+                return true;
+            }
+            else if (it.first != 0 && m[it.first] > 0 &&  m[2 * it.first] >= 1)
+            {
+                return true;
+            }
+        }
+        return false;    
+    }
+};
