@@ -60,3 +60,35 @@ public:
         return lps;
     }
 };
+
+/* SOLUTION 3 */
+/* TIME LIMIT EXCEEDED ON CASE 93 of 142 */
+class Solution {
+public:
+    string longestPalindrome(string s) 
+    {
+        string lps = "";
+        int n = s.length();
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = n-i; j >= 1; j--)
+            {
+                string sstr = s.substr(i,j);
+                bool palindromic = true;
+                for (int k = 0; k < sstr.length()/2; k++)
+                {
+                    if (sstr[k] != sstr[sstr.length()-1-k])
+                    {
+                        palindromic = false;
+                        break;
+                    }
+                }
+                if (palindromic == true && sstr.length() > lps.length())
+                {
+                    lps = sstr;
+                }
+            }
+        }    
+        return lps;
+    }
+};
