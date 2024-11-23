@@ -1,5 +1,5 @@
 /* SOLUTION 1 */
-/* psf */
+/* All tests passed */
 class Solution {
 public:
     string sortSentence(string s) 
@@ -24,10 +24,8 @@ public:
         vector<string> arr(n,"");
         for (int i = 0; i < n; i++)
         {
-            string num = stoi(words[i][words[i].length()-1]);
-            int num_ = stoi(num);
-            cout << num_ " " << endl;
-            arr[num_-1] = words[i].substr(0,words[i].length()-1);
+            int num = words[i][words[i].length()-1] - '0';
+            arr[num-1] = words[i].substr(0,words[i].length()-1);
         }
         for (int i = 0; i < n; i++)
         {
