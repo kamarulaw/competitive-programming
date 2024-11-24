@@ -43,7 +43,9 @@ public:
                             int newcol = col + dirs[i][1];
                             if (inbounds(grid.size(), grid[0].size(), newrow, newcol) && visited[newrow][newcol] == false && grid[newrow][newcol] == 1)
                             {
-                                visited[newrow][newcol] = false;
+                                qrows.push(newrow);
+                                qcols.push(newcol);
+                                visited[newrow][newcol] = true;
                                 island.push_back({newrow, newcol});
                             }
                         }
@@ -70,6 +72,7 @@ public:
         vector<vector<bool>> visited(grid1.size(), boolvec);
         findislands(grid1, visited, 1);
         findislands(grid2, visited, 2);
+        cout << grid1islands.size() << endl; cout << grid2islands.size() << endl; // (1) debug findislands (2) check if subset code is correct
         for (int i = 0; i < grid2islands.size(); i++)
         {
             int numfound = 0; vector<vector<int>> g2island = grid2islands[i]; 
