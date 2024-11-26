@@ -49,12 +49,16 @@ public:
                 }
             }
         }
+        cout << endl;
         int ans = 1;
         vector<int> vkeys(keys.begin(), keys.end());
-        vector<int> vkmins(vkeys.size(), 0);
-        for (int i = 0; i < vkeys.; i++)
+        vector<int> vkmins(vkeys.size(), INT_MAX);
+        for (int i = 0; i < vkeys.size(); i++)
         {
-            vkmins[i] = min(pfs[i][vkeys[i]], vkmins[i]);
+            for (int j = 0; j < n; j++)
+            {
+                vkmins[i] = min(pfs[j][vkeys[i]], vkmins[i]);
+            }
         }
         for (int i = 0; i < vkmins.size(); i++)
         {
@@ -71,7 +75,16 @@ public:
         {
             for (int j = 1; j <= n-i; j++)
             {
+                
                 vector<int> subarr(nums.begin()+i, nums.begin()+i+j);
+                
+                for (int k = 0; k < subarr.size(); k++)
+                {
+                    cout << subarr[k] << " ";
+                }
+                cout << " | " << arrayGCD(subarr) << endl;
+                
+
                 if (arrayGCD(subarr) == k)
                 {
                     ans++;
