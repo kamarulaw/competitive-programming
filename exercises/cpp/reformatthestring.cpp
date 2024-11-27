@@ -47,20 +47,6 @@ public:
         {
             ans += arr1[i];
         }
-
-        for (int i = 0; i < alpha.size(); i++)
-        {
-            cout << alpha[i] << " ";
-        }
-        cout << endl;
-
-        for (int i = 0; i < numeric.size(); i++)
-        {
-            cout << numeric[i] << " ";
-        }
-        cout << endl;
-
-        cout << alpha.size() << " " << numeric.size() << endl;
         return ans;
     }
 };
