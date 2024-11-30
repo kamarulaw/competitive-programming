@@ -1,5 +1,5 @@
 /* SOLUTION 1 */
-/* All tests passed */
+/* psf */
 class Solution {
 public:
     bool isprime(int n)
