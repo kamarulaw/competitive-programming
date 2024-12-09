@@ -2,20 +2,25 @@
 /* All tests passed */
 class Solution {
 public:
-    bool divideArray(vector<int>& nums) 
+    int averageValue(vector<int>& nums) 
     {
-        map<int,int> m;
+        int num = 0;
+        int numsum = 0;
         for (int i = 0; i < nums.size(); i++)
         {
-            m[nums[i]]++;
-        }
-        for (auto it : m)
-        {
-            if (it.second % 2 == 1)
+            if (nums[i] % 3 == 0 && nums[i] % 2 == 0)
             {
-                return false;
+                num++;
+                numsum += nums[i];
             }
         }    
-        return true;
+        if (num == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return numsum/num;
+        }
     }
 };
