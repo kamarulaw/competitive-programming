@@ -52,3 +52,33 @@ public:
         return; 
     }
 };
+
+/* SOLUTION 3 */ 
+/* TIME LIMIT EXCEEDED ON CASE 37 of 38 */
+class Solution {
+public:
+    vector<int> rotateutil(vector<int> arr)
+    {
+        int last = arr[arr.size()-1];
+        vector<int> rotated(arr.size(),0); 
+        rotated[0] = last;
+        for (int i = 1; i < arr.size(); i++)
+        {
+            rotated[i] = arr[i-1];
+        }
+        return rotated;
+    }
+    void rotate(vector<int>& nums, int k) 
+    {
+        if (nums.size() == 1)
+        {
+            return;
+        }
+        int rotations = 0;
+        while (rotations < k)
+        {
+            rotations++;
+            nums = rotateutil(nums);
+        }
+    }
+};
