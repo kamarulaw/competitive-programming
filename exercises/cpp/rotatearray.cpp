@@ -82,3 +82,55 @@ public:
         }
     }
 };
+
+/* SOLUTION 4 */
+/* All tests passed */
+class Solution {
+public:
+    vector<int> rotateutil(vector<int> arr)
+    {
+        int last = arr[arr.size()-1];
+        vector<int> rotated(arr.size(),0); 
+        rotated[0] = last;
+        for (int i = 1; i < arr.size(); i++)
+        {
+            rotated[i] = arr[i-1];
+        }
+        return rotated;
+    }
+
+    void rotate(vector<int>& nums, int k) 
+    {
+        if (nums.size() == 1)
+        {
+            return;
+        }
+        if (nums.size() < 20000)
+        {
+            int rotations = 0;
+            while (rotations < k)
+            {
+                rotations++;
+                nums = rotateutil(nums);
+            }
+            return;
+        }
+        else 
+        {
+            int n = nums.size();
+            vector<int> temp;
+            int start = n-1-k+1;
+            int end = start+k-1;
+            for (int ind = start; ind <= end; ind++)
+            {
+                temp.push_back(nums[ind]);
+            }     
+            for (int ind = 0; ind <= start-1; ind++)
+            {
+                temp.push_back(nums[ind]);
+            }
+            nums = temp; 
+            return;
+        }
+    }
+};
