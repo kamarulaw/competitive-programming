@@ -25,3 +25,30 @@ public:
         }
     }
 };
+
+/* SOLUTION 2 */
+/* RUNTIME ERROR ON CASE 8 of 28 */
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) 
+    {
+        if (nums.size() == 1)
+        {
+            return;
+        }
+        int n = nums.size();
+        vector<int> temp;
+        int start = n-1-k+1;
+        int end = start+k-1;
+        for (int ind = start; ind <= end; ind++)
+        {
+            temp.push_back(nums[ind]);
+        }     
+        for (int ind = 0; ind <= start-1; ind++)
+        {
+            temp.push_back(nums[ind]);
+        }
+        nums = temp;
+        return; 
+    }
+};
