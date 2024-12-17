@@ -1,5 +1,5 @@
 /* SOLUTION 1 */
-/* psf */
+/* WRONG ANSWER ON CASE 2658 of 3005 */
 class Solution {
 public:
     bool isprime(int n)
@@ -35,11 +35,8 @@ public:
             {
                 while (isprime(num) && dni%num == 0)
                 {
-                    if (dniv[dniv.size()-1] != num)
-                    {
-                        dniv.push_back(num);
-                        dni /= 10;
-                    }
+                    dniv.push_back(num);
+                    dni /= num;
                 }   
             }
             for (int j = i+1; j < nums.size(); j++)
@@ -50,11 +47,8 @@ public:
                 {
                     while (isprime(num) && dnj % num == 0)
                     {
-                        if (dnjv[dnjv.size()-1] != num)
-                        {
-                            dnjv.push_back(num);
-                            dnj /= 10;
-                        }
+                        dnjv.push_back(num);
+                        dnj /= num;
                     }
                 } 
                 bool flag = true;
@@ -63,6 +57,16 @@ public:
                     for (int jj = 0; jj < dnjv.size(); jj++)
                     {
                         if (jj != 0 && dnjv[jj] == dniv[ii])
+                        {
+                            flag = false;
+                        }
+                    }
+                }
+                for (int jj = 0; jj < dnjv.size(); jj++)
+                {
+                    for (int ii = 0; ii < dniv.size(); ii++)
+                    {
+                        if (ii != 0 && dniv[ii] == dnjv[jj])
                         {
                             flag = false;
                         }
