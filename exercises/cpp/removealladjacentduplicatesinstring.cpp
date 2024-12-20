@@ -37,3 +37,32 @@ public:
         return s;
     }
 };
+
+/* SOLUTION 2 */
+/* All tests passed */
+class Solution {
+public:
+    string removeDuplicates(string s) 
+    {
+        stack<char> sol;
+        sol.push(s[0]);
+        for (int i = 1; i < s.length(); i++)
+        {
+            if (sol.size() >= 1 && sol.top() == s[i])
+            {
+                sol.pop();
+            }
+            else 
+            {
+                sol.push(s[i]);
+            }
+        }
+        string ssol = "";
+        while (sol.size() > 0)
+        {
+            ssol += sol.top(); sol.pop();
+        }
+        reverse(ssol.begin(), ssol.end()); 
+        return ssol;
+    }
+};
