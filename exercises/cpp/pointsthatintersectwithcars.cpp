@@ -8,7 +8,7 @@ public:
         int max_ = INT_MIN;
         for (int i = 0; i < nums.size(); i++)
         {
-            min_ = min(min_, nums[1][0]);
+            min_ = min(min_, nums[i][0]);
             max_ = max(max_, nums[i][1]);
         }    
         vector<bool> visited(max_,false);
