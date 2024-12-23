@@ -51,3 +51,36 @@ public:
         return max_dfo;
     }
 };
+
+/* SOLUTION 2 */
+/* All tests passed */
+class Solution {
+public:
+    int furthestDistanceFromOrigin(string moves) 
+    {
+        int n = moves.length();
+        int ldfo = 0;
+        int rdfo = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (moves[i] == 'L' || moves[i] == '_')
+            {
+                ldfo--;
+            }
+            else
+            {
+                ldfo++;
+            }
+            
+            if (moves[i] == 'R' || moves[i] == '_')
+            {
+                rdfo++;
+            }
+            else
+            {
+                rdfo--;
+            }
+        }
+        return max(abs(rdfo),abs(ldfo));
+    }
+};
