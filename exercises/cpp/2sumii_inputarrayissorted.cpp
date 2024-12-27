@@ -53,3 +53,41 @@ public:
         return answer;    
     }
 };
+
+/* SOLUTION 2 */
+/* Accepted */
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) 
+    {
+        map<int,int> m;
+        int n = numbers.size();   
+        for (int i = 0; i < n; i++)
+        {
+            m[numbers[i]] = i+1;
+        }
+        for (auto it : m)
+        {
+            int lo = 0;
+            int hi = n-1;
+            while (lo <= hi)
+            {
+                int mid = lo + (hi - lo) / 2;
+                if (numbers[mid] == target - it.first)
+                {
+                    vector<int> sol = {it.second,m[target-it.first]};
+                    sort(sol.begin(),sol.end());
+                    return sol;
+                }
+                else if (numbers[mid] < target - it.first)
+                {
+                    lo = mid + 1;
+                }
+                else 
+                {
+                    hi = mid - 1;
+                }
+            }
+        }
+    }
+};
