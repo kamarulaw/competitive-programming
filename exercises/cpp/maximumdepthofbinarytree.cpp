@@ -43,6 +43,25 @@ public:
     }
 };
 
+/* SOLUTION 3 */
+/* All tests passed */
+class Solution {
+public:
+    int depth(TreeNode* tree, int depth_)
+    {
+        if (tree == NULL)
+        {
+            return depth_;
+        }
+        return max(depth(tree->left,depth_+1),depth(tree->right,depth_+1));
+    }
+
+    int maxDepth(TreeNode* root) 
+    {
+        return depth(root,0);    
+    }
+};
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
