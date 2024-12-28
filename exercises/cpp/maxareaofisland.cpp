@@ -75,3 +75,64 @@ public:
         return maxarea;    
     }
 };
+
+/* SOLUTION 2 */
+/* All tests passed */
+class Solution {
+public:
+    bool inbounds(int x,int y,int m,int n)
+    {
+        if (x < 0 || x >= m || y < 0 || y >= n)
+        {
+            return false;
+        }
+        return true;
+    } 
+
+    int maxAreaOfIsland(vector<vector<int>>& grid) 
+    {
+        int m = grid.size();
+        int n = grid[0].size();
+        int maxislandsize = 0;
+        queue<int> row_queue;
+        queue<int> col_queue;
+        vector<bool> false_vec(n,false);
+        vector<vector<bool>> visited(m,false_vec);
+        vector<vector<int>> dirs = {{1,0},{-1,0},{0,1},{0,-1}};
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (grid[i][j] == 1 && visited[i][j] == false)
+                {
+                    int islandsize = 0;
+                    visited[i][j] = true;
+                    row_queue.push(i);
+                    col_queue.push(j);
+                    while (row_queue.size() > 0)
+                    {
+                        int row = row_queue.front();
+                        int col = col_queue.front();
+                        row_queue.pop();
+                        col_queue.pop();
+                        islandsize++;
+                        for (int k = 0; k < dirs.size(); k++)
+                        {
+                            int nr = row + dirs[k][0];
+                            int nc = col + dirs[k][1];
+                            if (inbounds(nr,nc,m,n) && grid[nr][nc] == 1 && visited[nr][nc] == false)
+                            {
+                                visited[nr][nc] = true;
+                                row_queue.push(nr);
+                                col_queue.push(nc); 
+                            }
+                        }
+                    }
+                    maxislandsize = max(maxislandsize,islandsize);
+                }
+            }
+        }    
+        return maxislandsize;
+    }
+};
+
