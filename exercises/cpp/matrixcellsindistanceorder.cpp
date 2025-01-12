@@ -1,3 +1,5 @@
+/* SOLUTION 1 */
+/* All tests passed */
 class Solution {
 public:
   static bool comp(vector<int> a, vector<int> b) { 
@@ -25,4 +27,36 @@ public:
     }
     return matrix; 
   }
+};
+
+/* SOLUTION 2 */
+/* All tests passed */ 
+class Solution {
+public:
+    static bool comp(pair<vector<int>,int> a, pair<vector<int>,int> b)
+    {
+        return a.second <= b.second;
+    }
+
+    vector<vector<int>> allCellsDistOrder(int rows, int cols, int rCenter, int cCenter) 
+    {
+        vector<pair<vector<int>,int>> points;
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                pair<vector<int>,int> point;
+                point.first = {i,j};
+                point.second = abs(rCenter - i) + abs(cCenter - j);
+                points.push_back(point);
+            }
+        }    
+        sort(points.begin(), points.end(), comp);
+        vector<vector<int>> sol;
+        for (int i = 0; i < points.size(); i++)
+        {
+            sol.push_back(points[i].first);
+        }
+        return sol;
+    }
 };
