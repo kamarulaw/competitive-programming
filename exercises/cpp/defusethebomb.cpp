@@ -48,3 +48,55 @@ public:
         return sol;
     }
 };
+
+/* SOLUTION 2 */
+/* All tests passed */
+class Solution {
+public:
+    vector<int> decrypt(vector<int>& code, int k) 
+    {
+        vector<int> sol(code.size(),0);
+        if (k == 0)
+        {
+            return sol;
+        }    
+        else if (k > 0)
+        {
+            for (int i = 0; i < code.size(); i++)
+            {
+                int total = 0;
+                for (int j = i+1; j < i+k+1; j++)
+                {
+                    total += code[j%code.size()];
+                }
+                sol[i] = total;
+            }
+        }
+        else
+        {
+            vector<int> newcode(2*code.size(), 0);
+            for (int j = 0; j < newcode.size(); j++)
+            {
+                if (j < code.size())
+                {
+                    newcode[j] = code[j];
+                }
+                else 
+                {
+                    newcode[j] = code[j - code.size()];
+                }
+            }
+            for (int i = 0; i < code.size(); i++)
+            {
+
+                int total = 0;
+                for (int j = i+code.size()-1; j > i+code.size()-1+k; j--)
+                {
+                    total += newcode[j];
+                }
+                sol[i] = total;
+            }
+        }
+        return sol;
+    }
+};
