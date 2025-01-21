@@ -97,3 +97,43 @@ public:
         return s;
     }
 };
+
+/* SOLUTION 3 */
+/* MEMORY LIMIT EXCEEDED ON CASE 242 of 306 */
+class Solution {
+public:
+    string editedString(string s, int i)
+    {
+        s.erase(s.begin() + i);
+        return s;
+    }
+
+    string makeFancyString(string s) 
+    {
+        bool flag = true;
+        while (flag)
+        {
+            flag = false;
+            int n = s.length();
+            int consec = 1;
+            for (int i = 1; i < n; i++)
+            {
+                if (s[i] == s[i-1])
+                {
+                    consec++;
+                    if (consec == 3)
+                    {
+                        s = editedString(s,i);
+                        flag = true;
+                        break;
+                    }
+                }
+                if (s[i] != s[i-1])
+                {
+                    consec = 1;
+                }
+            }
+        }
+        return s;
+    }
+};
