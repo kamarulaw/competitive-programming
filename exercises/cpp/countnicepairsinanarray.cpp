@@ -122,3 +122,48 @@ public:
         return ans;
     }
 };
+
+/* SOLUTION 4 */
+/* All tests passed */
+class Solution {
+public:
+    int rev(int x)
+    {
+        vector<int> v;
+        while (x > 0)
+        {
+            v.push_back(x % 10); x /= 10;
+        }
+        int ans = 0;
+        for (int i = 0; i < v.size(); i++)
+        {
+            ans += v[i]*pow(10,v.size()-i-1);
+        }
+        return ans;
+    }
+    int countNicePairs(vector<int>& nums) 
+    {
+        unsigned long long int ans = 0;
+        map<int,int> m;
+        int n = nums.size();
+        for (int i = 0; i < n; i++)
+        {
+            m[nums[i]-rev(nums[i])]++;
+        }
+        for (auto it : m)
+        {
+            unsigned long long int num;
+            if (it.second % 2 == 0)
+            {
+                num = (unsigned long long int)(it.second/2)*(it.second-1);
+            }
+            else 
+            {
+                num = (unsigned long long int)(it.second)*((it.second-1)/2);
+            }
+            ans += num;
+            ans %= (unsigned long long int)7+(unsigned long long int)pow(10,9);
+        }
+        return ans;
+    }
+};
