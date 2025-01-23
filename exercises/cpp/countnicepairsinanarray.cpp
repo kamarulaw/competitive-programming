@@ -41,3 +41,39 @@ public:
         return ans;
     }
 };
+
+/* SOLUTION 2 */
+/* WRONG ANSWER ON CASE 81 of 84 */
+class Solution {
+public:
+    int rev(int x)
+    {
+        vector<int> v;
+        while (x > 0)
+        {
+            v.push_back(x % 10); x /= 10;
+        }
+        int ans = 0;
+        for (int i = 0; i < v.size(); i++)
+        {
+            ans += v[i]*pow(10,v.size()-i-1);
+        }
+        return ans;
+    }
+    int countNicePairs(vector<int>& nums) 
+    {
+        int ans = 0;
+        map<int,int> m;
+        int n = nums.size();
+        for (int i = 0; i < n; i++)
+        {
+            m[nums[i]-rev(nums[i])]++;
+        }
+        for (auto it : m)
+        {
+            int num = it.second*(it.second-1); num /= 2;
+            ans += num;
+        }
+        return ans;
+    }
+};
