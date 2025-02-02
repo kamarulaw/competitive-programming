@@ -1,5 +1,5 @@
 /* SOLUTION 1 */
-/* psf */
+/* TIME LIMIT EXCEEDED ON CASE 3 */
 #include <map>
 #include <set>
 #include <cmath>
@@ -33,14 +33,15 @@ bool isprime(int a)
 
 map<int,int> pf(int a)
 {
+    int a_ = a;
     map<int,int> sol;
-    for (int i = 2; i < a; i++)
+    for (int i = 2; i <= a_; i++)
     {
         if (isprime(i))
         {
             while (a%i==0)
             {
-                a/=i;
+                a /= i;
                 sol[i]++;
             }
         }
@@ -75,7 +76,7 @@ int main()
                 }
                 for (auto elem : keys)
                 {
-                    gcd *= min(pf1[elem],pf2[elem]);
+                    gcd *= pow(elem,min(pf1[elem],pf2[elem]));
                 }
                 maxgcd = max(gcd,maxgcd);
             }
