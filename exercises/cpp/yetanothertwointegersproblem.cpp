@@ -24,3 +24,25 @@ int main()
     }
     return 0;
 }
+
+/* SOLUTION 2 */
+/* psf */
+
+#include <cmath>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+    int t,a,b; 
+    cin >> t;
+    for (int i = 0; i < t; i++)
+    {
+        cin >> a >> b;
+        cout << ceil(abs(a-b)/(float)10) << endl;
+    }
+    return 0;
+}
