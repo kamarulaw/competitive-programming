@@ -1,5 +1,5 @@
 /* SOLUTION 1 */
-/* In queue */
+/* All tests passed */
 
 #include <iostream>
 
