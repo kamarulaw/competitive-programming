@@ -71,3 +71,46 @@ int main()
         cout << endl;
     }
 }
+
+/* SOLUTION 2 */
+/* All tests passed */
+
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    int t;
+    cin >> t;
+    for (int i = 0; i < t; i++)
+    {
+        int n;
+        cin >> n;
+        int total = 0;
+        vector<int> seq(n,0);
+        for (int j = 0; j < n; j++)
+        {
+            cin >> seq[j];
+            total += seq[j];
+        }
+        bool flag = false;
+        for (int j = 0; j < n; j++)
+        {
+            if (seq[j]%2==(total-seq[j])%2)
+            {
+                flag = true;
+            }
+        }
+        if (flag)
+        {
+            cout << "YES";
+        }
+        else
+        {
+            cout << "NO";
+        }
+        cout << endl;
+    }
+}
