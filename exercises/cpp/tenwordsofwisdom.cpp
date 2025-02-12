@@ -8,7 +8,7 @@
 #include <algorithm>
 using namespace std;
 
-static bool comp(vector<int> _ab1,vector<int> _ab2)
+bool comp(vector<int> _ab1,vector<int> _ab2)
 {
     return _ab1[1] >= _ab2[1];
 }
