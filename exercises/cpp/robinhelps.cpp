@@ -1,5 +1,6 @@
 /* SOLUTION 1 */
-/* psf */ 
+/* All tests passed */ 
+
 #include <vector>
 #include <iostream>
 
@@ -13,23 +14,22 @@ int main()
     {
         int n,k;
         int gc = 0;
+        int rg = 0;
         cin >> n >> k;
-        vector<int> seq(n,0);
-        for (int j = 0; j < n; j++)
-        {
-            cin >> seq[j];
-        }
         for (int j = 0; j < n; j++) 
         {
-            if (seq[j]>=k)
+            int num;
+            cin >> num;
+            if (num>=k)
             {
-                gc+=seq[j];
+                gc+=num;
             }
-            if (seq[j]==0&&gc>0)
+            else if (num==0&&gc>0)
             {
                 gc--;
+                rg++;
             }
         }
-        cout << gc << endl;
+        cout << rg << endl;
     }
 }
