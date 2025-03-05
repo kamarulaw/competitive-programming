@@ -1,10 +1,10 @@
 /* SOLUTION 1 */
-/* psf */
+/* TIME LIMIT EXCEEDED ON CASE 3415 of 6873 */
 class Solution {
 public:
     int longestAlternatingSubarray(vector<int>& nums, int threshold) 
     {
-        int sol = 1;
+        int sol = 0;
         int n = nums.size();
         for (int i = 0; i < n; i++)
         {
@@ -17,9 +17,28 @@ public:
                     subarr.push_back(nums[jj]);
                 }
                 bool flag = true;
-                for (int jj = 1; jj <= j; jj++)
+                if (subarr[0]%2 != 0)
                 {
-                    if (subarr[jj]%2==subarr[jj-1]%2 || subarr[jj]>threshold || subarr[jj-1]>threshold)
+                    flag = false;
+                }
+                if (!(flag))
+                {
+                    continue;
+                }
+                for (int jj = 0; jj < subarr.size(); jj++)
+                {
+                    if (subarr[jj] > threshold)
+                    {
+                        flag = false;
+                    }
+                }
+                if (!(flag))
+                {
+                    continue;
+                }
+                for (int jj = 0; jj < subarr.size()-1; jj++)
+                {
+                    if (subarr[jj]%2==subarr[jj+1]%2)
                     {
                         flag = false;
                     }
@@ -27,6 +46,7 @@ public:
                 if (flag)
                 {
                     sol = max(sol,j);
+
                 }
             }
         }
