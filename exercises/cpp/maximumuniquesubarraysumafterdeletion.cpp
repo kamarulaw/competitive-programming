@@ -34,7 +34,7 @@ public:
 
     void generate(int i,vector<int> subseq)
     {
-        if (subseq.size()>0)
+        if (i==n&&subseq.size()>0)
         {
             subseqs.push_back(subseq);
         }
