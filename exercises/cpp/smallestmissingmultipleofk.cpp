@@ -1,3 +1,4 @@
+/* SOLUTION 1 */
 /* progress so far */
 class Solution {
 public:
@@ -28,5 +29,45 @@ public:
             }
         }
         return (sol_arr.size())*k;
+    }
+};
+
+/* SOLUTION 2 */
+/* WRONG ANSWER ON CASE 649 of 664 */
+
+class Solution {
+public:
+    int missingMultiple(vector<int>& nums, int k) 
+    {
+        vector<int> nums_;
+        int n = nums.size();
+        for (int i = 0; i < n; i++)
+        {
+            if (nums[i]%k==0)
+            {
+                nums_.push_back(nums[i] / k);
+            }
+        }
+        int n_ = nums_.size();
+        sort(nums_.begin(), nums_.end());
+        if (nums_.size() == 0 || nums_[0] != 1)
+        {
+            return k;
+        }
+        else if (nums_[n_-1] == n_ && nums_[0] == 1)
+        {
+            return k * (n_+1);
+        }
+        else 
+        {
+            for (int i = 0; i < n_ - 1; i++)
+            {
+                if (nums_[i+1] - nums_[i] != 1)
+                {
+                    return (nums_[i] + 1) * k;
+                }
+            }
+        }
+        return INT_MAX;
     }
 };
