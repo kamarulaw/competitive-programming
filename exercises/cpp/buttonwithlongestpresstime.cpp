@@ -128,3 +128,38 @@ public:
         return result1;
     }
 };
+
+/* SOLUTION 5 */
+/* WRONG ANSWER ON CASE 533 of 588 */
+class Solution {
+public:
+    int buttonWithLongestTime(vector<vector<int>>& events) 
+    {
+        int n = events.size(); 
+        map<int,int> presstime;
+        int elapsedtime = events[0][1];
+        presstime[events[0][0]] = elapsedtime;
+        cout << events[0][0] << " " << presstime[events[0][0]] << endl; 
+        for (int i = 1; i < n; i++)
+        {
+            elapsedtime = (events[i][1]-events[i-1][1]);
+            presstime[events[i][0]] += elapsedtime;
+            cout << events[i][0] << " " << presstime[events[i][0]] << endl; 
+        }
+        int result1 = events[0][0];
+        int result2 = presstime[result1];
+        for (auto it : presstime)
+        {
+            if (presstime[it.first] > result2)
+            {
+                result1 = it.first;
+                result2 = presstime[result1];
+            }
+            else if (presstime[it.first] == result2)
+            {
+                result1 = min(it.first, result1);
+            }
+        }
+        return result1;
+    }
+};
