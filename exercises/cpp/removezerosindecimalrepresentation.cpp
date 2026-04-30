@@ -1,6 +1,8 @@
 /* SOLUTION 1 */
 /* All tests passed */
 
+// *Paraphrased* That was a lottery call. You're not usually one I'd pledge one like this too, but anyone can be a winner here
+// https://leetcode.com/problems/vowel-consonant-score/description/?envType=problem-list-v2&envId=simulation (pretty sure this question came out this year...nothing against questions that are too easy to get in the rhythm but ill hold out on this one)
 class Solution {
 public:
     vector<int> rep(long long n)
