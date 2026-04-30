@@ -1,8 +1,8 @@
 /* SOLUTION 1 */
 /* psf */
+
 class Solution {
 public:
-
     char toLower(char c)
     {
         if ((int)'a' <= (int)c <= (int)'z')
@@ -11,13 +11,20 @@ public:
         }
         else
         {
-            return char((int)'A' + (int)c - );
+            return char((int)'a' + (int)c - (int)'A');
         }
     }
 
     char toUpper(char c)
     {
-
+        if ((int)'A' <= (int)c <= (int)'Z')
+        {
+            return c;
+        }
+        else 
+        {
+            return char((int)'A' + (int)c - (int)'a');
+        }
     }
 
     string generateTag(string caption) 
@@ -46,11 +53,30 @@ public:
         {
             words.push_back(currword);
         }
+        string result = "";
+        result.push_back('#');
         for (int i = 0; i < words.size(); i++)
         {
-            cout << words[i] << endl;
-        }   
-        cout << (int)'a' << " " << (int)'A';
-        return "";
+            currword = words[i];
+            for (int j = 0; j < currword.length(); j++)
+            {
+                if (i == 0)
+                {
+                    result.push_back(toLower(currword[j]));
+                }
+                else 
+                {
+                    if (j == 0)
+                    {
+                        result.push_back(toUpper(currword[j]));
+                    }
+                    else
+                    {
+                        result.push_back(toLower(currword[j]));
+                    }
+                }
+            }
+        }
+        return result;
     }
 };
