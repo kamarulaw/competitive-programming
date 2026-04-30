@@ -1,11 +1,11 @@
 /* SOLUTION 1 */
-/* psf */
+/* All tests passed */
 
 class Solution {
 public:
     char toLower(char c)
     {
-        if ((int)'a' <= (int)c <= (int)'z')
+        if ((int)'a' <= (int)c && (int)c <= (int)'z')
         {
             return c;
         }
@@ -17,7 +17,7 @@ public:
 
     char toUpper(char c)
     {
-        if ((int)'A' <= (int)c <= (int)'Z')
+        if ((int)'A' <= (int)c && (int)c <= (int)'Z')
         {
             return c;
         }
@@ -60,6 +60,10 @@ public:
             currword = words[i];
             for (int j = 0; j < currword.length(); j++)
             {
+                if (result.length() == 100)
+                {
+                    return result;
+                }
                 if (i == 0)
                 {
                     result.push_back(toLower(currword[j]));
