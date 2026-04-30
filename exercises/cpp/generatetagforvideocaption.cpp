@@ -3,6 +3,23 @@
 class Solution {
 public:
 
+    char toLower(char c)
+    {
+        if ((int)'a' <= (int)c <= (int)'z')
+        {
+            return c;
+        }
+        else
+        {
+            return char((int)'A' + (int)c - );
+        }
+    }
+
+    char toUpper(char c)
+    {
+
+    }
+
     string generateTag(string caption) 
     {
         vector<string> words; 
