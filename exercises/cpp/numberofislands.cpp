@@ -95,3 +95,62 @@ public:
         return sol;
     }
 };
+
+/* SOLUTION 3 - 5/5/26 */
+/* All tests passed */
+// ♫⋆｡♪ ₊˚♬ ﾟ. ᯓ‎𝄞… I had to put my back against the wall (and what?). Tell me that I don't deserve to ball
+class Solution {
+public:
+
+    bool inBounds(int r, int c, int m, int n)
+    {
+        if (0 <= r && r < m && 0 <= c && c < n)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    int numIslands(vector<vector<char>>& grid) 
+    {
+        int sol = 0;
+        int m = grid.size();
+        int n = grid[0].size();
+        vector<bool> false_(n, false);
+        vector<vector<bool>> visited(m, false_);
+        vector<vector<int>> dirs = {{-1,0},{1,0},{0,1},{0,-1}};
+        queue<int> row;
+        queue<int> col;
+
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (grid[i][j] == '1' && visited[i][j] == false)
+                {
+                    sol++;
+                    row.push(i);
+                    col.push(j);
+                    while (row.size() > 0)
+                    {
+                        int crow = row.front();
+                        int ccol = col.front();
+                        row.pop();
+                        col.pop();
+                        for (int ii = 0; ii < dirs.size(); ii++)
+                        {
+                            vector<int> dir = dirs[ii];
+                            if (inBounds(crow+dir[0], ccol+dir[1], m, n) && visited[crow+dir[0]][ccol+dir[1]] == false && grid[crow+dir[0]][ccol+dir[1]] == '1') 
+                            {
+                                row.push(crow+dir[0]);
+                                col.push(ccol+dir[1]);
+                                visited[crow+dir[0]][ccol+dir[1]]= true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return sol;
+    }
+};
