@@ -32,6 +32,7 @@ public:
                     row.push(i);
                     col.push(j);
                     total += grid[i][j];
+                    cout << total << " -> ";
                     while (row.size() > 0)
                     {
                         int crow = row.front();
@@ -41,16 +42,20 @@ public:
                         if (inBounds(crow,ccol,m,n) && visited[crow][ccol] == false && grid[crow][ccol] > 0)
                         {
                             total += grid[crow][ccol];
+                            cout << total << " -> ";
                             visited[crow][ccol] = true;
                         }
                     }
+                    cout << endl;
+                }
+                if (total%k==0)
+                {
+                    sol++;
                 }
             }
-            if (total%k==0)
-            {
-                sol++;
-            }
+ 
         }
+        cout << sol << endl;
         return sol;
     }
 };
