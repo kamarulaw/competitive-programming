@@ -1,5 +1,5 @@
 /* SOLUTION 1 */
-/* PROGRESS SO FAR */
+/* psf */
 
 class Solution {
 public:
@@ -24,15 +24,14 @@ public:
         vector<vector<bool>> visited(m, false_);
         for (int i = 0; i < m; i++)
         {
-            int total = 0;
             for (int j = 0; j < n; j++)
             {
+                int total = 0;
                 if (grid[i][j] > 0)
                 {
                     row.push(i);
                     col.push(j);
-                    total += grid[i][j];
-                    cout << total << " -> ";
+                    //cout << total << " : {" << i << " , " << j << "}" << "-> ";
                     while (row.size() > 0)
                     {
                         int crow = row.front();
@@ -42,7 +41,7 @@ public:
                         if (inBounds(crow,ccol,m,n) && visited[crow][ccol] == false && grid[crow][ccol] > 0)
                         {
                             total += grid[crow][ccol];
-                            cout << total << " -> ";
+                            cout << total << " : {" << i << " , " << j << "}" << "-> ";
                             visited[crow][ccol] = true;
                         }
                     }
